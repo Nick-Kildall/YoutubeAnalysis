@@ -11,3 +11,10 @@ We are frequent consumers of YouTube and are interested in what makes a YouTube 
 [Study done with the same dataset](https://towardsdatascience.com/why-study-statistics-behind-youtube-trending-videos-231b72c81256). Could potentially be a useful reference.
 
 # Finding Data
+Where did you download the data (e.g., a web URL)?
+https://developers.google.com/youtube/analytics
+API
+https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv
+current
+https://www.kaggle.com/datasnaek/youtube-new?select=USvideos.csv
+2017

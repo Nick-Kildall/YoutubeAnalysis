@@ -50,7 +50,12 @@ We found [an API developed by Google](https://developers.google.com/youtube/anal
 #### How was the data collected or generated?
 - US_youtube_trending_data was collected by Rishav Sharma via the YouTube API to observe the daily statistics of trending YouTube videos. It is updated daily and has been recording entries since August 12th, 2020.
 - USvideos was collected by Mitchell J via the YouTube API and contains information about trending videos from November 2017 through June 2018.
-- API
+- API information are gathered from the  YouTube Analytics API and YouTube Reporting API which contains reports that includes two types of data;
+    - **Dimensions** are common criteria that are used to aggregate data, such as the date on which the user activity occurred or the country where the users were located.
+
+    In a report, each row of data has a unique combination of dimension values. As such, each row's combination of dimension values functions as the primary key for that row.
+   - **Metrics** are individual measurements of user activity, ad performance, or estimated revenue. User activity metrics include things like video view counts and ratings (likes and dislikes).
+
 
 #### How many observations (rows) are in your data?
 We downloaded our csv files into R and ran nrow()

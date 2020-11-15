@@ -12,9 +12,6 @@ We are frequent consumers of YouTube and we are curious as to what makes a YouTu
 - When were trending videos posted?  
   Using the time of day and days of the week that trending videos are posted, we can try to answer if when videos get posted have an effect on why they become trending.
 
-- Where do trending videos come from?  
-  Looking at the location of the channel from which the video was posted, we can determine whether or not people become more interested in particular areas or regions.
-
 - What are the most common characteristics of trending videos?  
   - What types of titles are common in trending videos?
   - Do they ask questions, are they in caps, or do they use symbols?
@@ -27,15 +24,9 @@ We are frequent consumers of YouTube and we are curious as to what makes a YouTu
 
   Analyzing these statistics of trending videos will help us get a sense for the logistics behind what makes a video become trending.
 
-- What categories are most commonly found in the trending section?
-  - What type of content are most people interested in discovering?
-  - Do certain categories of content such as sports highlights make an appearance more often than other types of content?  
+- What video tags make it to the trending section most frequently?
 
   We will answer this question to determine if there is a correlation between certain types of content and presence within the trending category.
-
-- Is there diversity among YouTube's trending section?  
-  Our answers to other questions can help us determine whether or not YouTube's trending section favors one set of demographics over another.
-
 
 ## Finding Data
 #### Where did you download the data (e.g., a web URL)?    

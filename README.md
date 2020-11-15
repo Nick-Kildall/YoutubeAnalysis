@@ -59,3 +59,8 @@ We downloaded our csv files into R and ran ncol()
 - “US_youtube_trending_data.csv” has 16 columns
 - “USvideos.csv” has 16 columns
 - The API is not a csv file, therefore it has no columns.
+
+#### What questions from above can be answered using the data in this dataset?
+- We can analyze the data to figure out what factors — such as; likes, dislikes, titles, comments, and length — are typically found in trending videos.
+- We can analyze when trending videos are posted.
+- We can analyze what tags are most frequently found in trending.

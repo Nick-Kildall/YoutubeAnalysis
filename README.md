@@ -3,12 +3,12 @@
 #### Why are you interested in this domain?
 We are frequent consumers of YouTube and we are curious as to what makes a YouTube video trending. Trending YouTube videos capture what is currently going on in the world and we would like to explore why these videos end up in the trending category.
 
-#### What other examples of data driven projects have you found related to this domain (share at least 3)?
+#### What other examples of data driven projects have you found related to this domain?
 - [This data project](https://scholarworks.calstate.edu/downloads/k3569434b) looks at how YouTube data is used by companies to improve their product. Discusses how popular a product is by looking at view counts, shares, and etc. This is more focused on company marketing profit, but still utilizes the YouTube algorithm to gain its success.
 - [This study](https://www.appypie.com/how-youtube-algorithm-works) uses data to create infographics that explain best times to post and other factors that determine a video's success. Looks at the YouTube algorithm, so it's more broad than our topic.
 - [Study done with the same dataset](https://towardsdatascience.com/why-study-statistics-behind-youtube-trending-videos-231b72c81256). Could potentially be a useful reference.
 
-#### What data-driven questions do you hope to answer about this domain (share at least 3)?  
+#### What data-driven questions do you hope to answer about this domain?
 - When were trending videos posted?  
   Using the time of day and days of the week that trending videos are posted, we can try to answer if when videos get posted have an effect on why they become trending.
 
@@ -38,7 +38,7 @@ We are frequent consumers of YouTube and we are curious as to what makes a YouTu
 
 
 ## Finding Data
-##### Where did you download the data (e.g., a web URL)?    
+#### Where did you download the data (e.g., a web URL)?    
 
 We downloaded [“US_youtube_trending_data.csv”](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv) from kaggle (current data)
 
@@ -47,18 +47,18 @@ We downloaded [“USvideos.csv”](https://www.kaggle.com/datasnaek/youtube-new?
 We found [an API developed by Google](https://developers.google.com/youtube/analytics) for creators.
 
 
-##### How was the data collected or generated?
+#### How was the data collected or generated?
 - US_youtube_trending_data was collected by Rishav Sharma via the YouTube API to observe the daily statistics of trending YouTube videos. It is updated daily and has been recording entries since August 12th, 2020.
 - USvideos was collected by Mitchell J via the YouTube API and contains information about trending videos from November 2017 through June 2018.
 - API
 
-##### How many observations (rows) are in your data?
+#### How many observations (rows) are in your data?
 We downloaded our csv files into R and ran nrow()
 - “US_youtube_trending_data.csv” has 18,798 rows
 - “USvideos.csv” has 40,949 rows
 - The API is not a csv file, therefore it has no rows.
 
-##### How many features (columns) are in the data?
+#### How many features (columns) are in the data?
 We downloaded our csv files into R and ran ncol()
 - “US_youtube_trending_data.csv” has 16 columns
 - “USvideos.csv” has 16 columns

@@ -12,16 +12,20 @@ We are frequent consumers of YouTube and are interested in what makes a YouTube 
 When were trending videos posted?
 - Time of day
 - Days of the week
+
 Where do trending videos come from?
 - Location
+
 What type of information is analyzed to determine trending videos?
 - View count
 - Recency
 - Diversity
+
 What are the most common characteristics of trending videos?
 - Titles (do they ask questions, are they in caps, do they use symbols, etc.)
 - Length
 - Like to dislike ratio and total engagement
+
 What categories are most commonly found to become trending?
 
 # Finding Data

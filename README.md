@@ -39,12 +39,13 @@ We are frequent consumers of YouTube and we are curious as to what makes a YouTu
 
 ## Finding Data
 ##### Where did you download the data (e.g., a web URL)?    
-https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv
-- “US_youtube_trending_data.csv” (current data)
-https://www.kaggle.com/datasnaek/youtube-new?select=USvideos.csv
-- “USvideos.csv” (2017 data)
-https://developers.google.com/youtube/analytics
-- API
+
+We downloaded [“US_youtube_trending_data.csv”](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv) from kaggle (current data)
+
+We downloaded [“USvideos.csv”](https://www.kaggle.com/datasnaek/youtube-new?select=USvideos.csv) from kaggle (2017 data)
+
+We found [an API developed by Google](https://developers.google.com/youtube/analytics) for creators.
+
 
 ##### How was the data collected or generated?
 - US_youtube_trending_data was collected by Rishav Sharma via the YouTube API to observe the daily statistics of trending YouTube videos. It is updated daily and has been recording entries since August 12th, 2020.

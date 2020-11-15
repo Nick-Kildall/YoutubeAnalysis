@@ -38,10 +38,27 @@ We are frequent consumers of YouTube and we are curious as to what makes a YouTu
 
 
 ## Finding Data
-Where did you download the data (e.g., a web URL)?  
-https://developers.google.com/youtube/analytics
-API  
+##### Where did you download the data (e.g., a web URL)?    
 https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv
-current  
+- “US_youtube_trending_data.csv” (current data)
 https://www.kaggle.com/datasnaek/youtube-new?select=USvideos.csv
-2017
+- “USvideos.csv” (2017 data)
+https://developers.google.com/youtube/analytics
+- API
+
+##### How was the data collected or generated?
+- US_youtube_trending_data was collected by Rishav Sharma via the YouTube API to observe the daily statistics of trending YouTube videos. It is updated daily and has been recording entries since August 12th, 2020.
+- USvideos was collected by Mitchell J via the YouTube API and contains information about trending videos from November 2017 through June 2018.
+- API
+
+##### How many observations (rows) are in your data?
+We downloaded our csv files into R and ran nrow()
+- “US_youtube_trending_data.csv” has 18,798 rows
+- “USvideos.csv” has 40,949 rows
+- The API is not a csv file, therefore it has no rows.
+
+##### How many features (columns) are in the data?
+We downloaded our csv files into R and ran ncol()
+- “US_youtube_trending_data.csv” has 16 columns
+- “USvideos.csv” has 16 columns
+- The API is not a csv file, therefore it has no columns.

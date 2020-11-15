@@ -9,3 +9,5 @@ We are frequent consumers of YouTube and are interested in what makes a YouTube 
 [This study](https://www.appypie.com/how-youtube-algorithm-works) uses data to create infographics that explain best times to post and other factors that determine a video's success. Looks at the YouTube algorithm, so it's more broad than our topic.
 
 [Study done with the same dataset](https://towardsdatascience.com/why-study-statistics-behind-youtube-trending-videos-231b72c81256). Could potentially be a useful reference.
+
+# Finding Data

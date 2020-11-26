@@ -1,10 +1,8 @@
 library(ggplot2)
-library(plotly)
 library(dplyr)
 library(RColorBrewer)
 
 ### Reading in the data frame
-
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv", stringsAsFactors = FALSE)
 
 ### The numbers below are the corresponding categories for the category IDs in

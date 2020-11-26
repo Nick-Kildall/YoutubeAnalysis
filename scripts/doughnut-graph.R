@@ -37,7 +37,7 @@ count$label_position <- (count$ymax + count$ymin) / 2
 count$label <- paste0(count$category_id, "\n", count$counts)
 
 # Needed more than 9 colors, so had to concatenate palettes.
-mycolors <- c(brewer.pal(name = "Paired", n = 8),
+my_colors <- c(brewer.pal(name = "Paired", n = 8),
              brewer.pal(name = "Pastel2", n = 7))
 
 ### Doughnut graph
@@ -49,7 +49,7 @@ trending_categories_plot <- ggplot(count, aes(ymax = ymax, ymin = ymin,
              aes(y = label_position,
                  label = paste(category_id, "\n", percentages, "%")),
              size = 2.25) +
-  scale_color_manual(values = mycolors) +
+  scale_color_manual(values = my_colors) +
   coord_polar(theta = "y") +
   xlim(c(0, 4)) +
   theme_void() +

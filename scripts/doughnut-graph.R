@@ -26,13 +26,12 @@ youtube_trending <- read.csv("data/US_youtube_trending_data.csv", stringsAsFacto
 # 28 - Science & Technology
 # 29 - Nonprofits & Activism
 
-
+# Creating a new data frame that only contains the counts of each categoryId
 count <- youtube_trending %>%
   group_by(categoryId) %>%
   summarize(counts = unique((sum(categoryId) / categoryId)))
 
 # Labeling the Category IDs with their respective categories.
-
 count$categoryId <- c("Film & Animation", "Autos & Vehicles", "Music", 
                      "Pets & Animals", "Sports", "Travel & Events", "Gaming", 
                      "People & Blogs", "Comedy", "Entertainment", 
@@ -54,7 +53,7 @@ count$labelPosition <- (count$ymax + count$ymin) / 2
 # Computing labels
 count$label <- paste0(count$categoryId, "\n", count$counts)
 
-### Needed more than 9 colors, so had to concatenate 
+# Needed more than 9 colors, so had to concatenate 
 mycolors = c(brewer.pal(name = "Paired", n = 8),
              brewer.pal(name = "Pastel2", n = 7))
 

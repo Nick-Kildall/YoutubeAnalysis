@@ -5,8 +5,8 @@ library(RColorBrewer)
 ### Reading in the data frame
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv", stringsAsFactors = FALSE)
 
-### The numbers below are the corresponding categories for the category IDs in
-### the initial dataframe.
+### The numbers below are the corresponding categories for the Category IDs in
+### the initial data frame.
 
 # 1 -  Film & Animation
 # 2 -  Autos & Vehicles
@@ -24,7 +24,7 @@ youtube_trending <- read.csv("data/US_youtube_trending_data.csv", stringsAsFacto
 # 28 - Science & Technology
 # 29 - Nonprofits & Activism
 
-# Creating a new data frame that only contains the counts of each categoryId
+# Creating a new data frame that only contains the counts of each Category ID
 count <- youtube_trending %>%
   group_by(categoryId) %>%
   summarize(counts = unique((sum(categoryId) / categoryId)))
@@ -51,7 +51,7 @@ count$labelPosition <- (count$ymax + count$ymin) / 2
 # Computing labels
 count$label <- paste0(count$categoryId, "\n", count$counts)
 
-# Needed more than 9 colors, so had to concatenate 
+# Needed more than 9 colors, so had to concatenate palettes.
 mycolors = c(brewer.pal(name = "Paired", n = 8),
              brewer.pal(name = "Pastel2", n = 7))
 

@@ -1,5 +1,5 @@
 ---
-title: "What YouTube videos make the trending section?"
+title: "What YouTube videos make the trending section in the United States?"
 output: html_document
 ---
 
@@ -11,6 +11,13 @@ the United States is familiar with. However, the types of videos and **the
 logistics behind the videos that make the trending section are not as 
 well known**. In this report we will analyze what factors support videos making 
 it into YouTube's trending section _through summaries, tables, and visual 
-representations_ of our findings from our data sets.
+representations_ of our findings from our data set. The data set we will be
+using to conduct this analysis was created and organized by 
+[Rishav Sharma.](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv)
+We pulled the data set on November 14th, 2020 and thus the data we are analyzing
+contains values from August 12th, 2020 to November 14th, 2020. It is important
+to note that our analysis is only for videos **in the United States** and does 
+not contain correlations between the factors we are analyzing and other 
+countries.
 
 ## Summary Information

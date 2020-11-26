@@ -3,16 +3,14 @@ title: "What YouTube videos make the trending section?"
 output: html_document
 ---
 
-## YouTube Trending Videos in the United States
-
-### Introduction
+## Introduction
 
 Trending YouTube videos capture what is going on in the world through a variety
 of different categories. YouTube videos are something that almost everyone in 
-the United States is familiar with. However, the types of videos and the 
+the United States is familiar with. However, the types of videos and **the 
 logistics behind the videos that make the trending section are not as 
-well known. In this report we will analyze what factors support videos making 
-it into YouTube's trending section through summaries, tables, and visual 
-representations of our findings from our data sets.
+well known**. In this report we will analyze what factors support videos making 
+it into YouTube's trending section _through summaries, tables, and visual 
+representations_ of our findings from our data sets.
 
-### Summary Information
+## Summary Information

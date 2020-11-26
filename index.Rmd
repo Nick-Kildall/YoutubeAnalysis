@@ -3,6 +3,12 @@ title: "What YouTube videos make the trending section in the United States?"
 output: html_document
 ---
 
+```{r setup, echo = FALSE, message = F, include = F}
+library("knitr")
+library("dplyr")
+source("scripts/doughnut-graph.R")
+
+```
 ## Introduction
 
 Trending YouTube videos capture what is going on in the world through a variety
@@ -21,3 +27,17 @@ not contain correlations between the factors we are analyzing and other
 countries.
 
 ## Summary Information
+
+
+## Charts
+
+### Doughnut Graph
+This doughnut graph displays the distribution of each video category found 
+within the trending section. From looking at the graph, it is clear to see that
+the majority of videos that make it into the trending section are **Music, 
+Entertainment, and Sports**, with the combination of the three making up over
+50% of the fifteen unique categories that were found in our data.
+
+```{r, echo = FALSE }
+trending_categories_plot
+```

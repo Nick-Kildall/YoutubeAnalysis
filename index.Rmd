@@ -43,7 +43,8 @@ trending_categories_plot
 ```
 
 ### Average Viewership Per Day
-
+This plot displays the average amount of views trending videos recieved on a given day (Sunday to Saturday). We created this chart to see if there is a relationship between average viewership and the day of the week. 
 ```{r, echo = FALSE }
 days_of_week_viewership_plot
 ```
+This graph clearly shows that trending videos on Friday recieve nearly triple the average viewership. Additionally, Wednesday is a particularly slow day for YouTube videos. This may mean that popular creators should attempt to have a video on the trending page every Friday because this is when they would likely recieve the highest viewership.

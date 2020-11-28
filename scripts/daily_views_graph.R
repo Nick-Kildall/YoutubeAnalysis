@@ -35,7 +35,7 @@ days_of_week_viewership_plot <- ggplot(data = days_of_week_viewership,
        aes(x = day, y = sum_view, fill = day)) +
   geom_bar(position = "dodge", stat = "identity") +
   geom_text(aes(label = sum_view), 
-            position = position_dodge(width = 0.9), vjust = -1) +
+            position = position_dodge(width = 0.9), vjust = -.5) +
   scale_colour_manual(values = names(brewer.pal(6, "Set1"))) +
   labs(x = "Day", y = "Average Views") +
   ggtitle("Average Amount of Views by Day of the Week") +

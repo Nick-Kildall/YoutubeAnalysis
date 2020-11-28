@@ -6,7 +6,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 ### Reading in file
-youtube_trending <- read.csv("../data/US_youtube_trending_data.csv",
+youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
   encoding = "UTF-8",
   stringsAsFactors = FALSE
 )

@@ -12,7 +12,7 @@ colnames(youtube_trending)[6] <- "category_id"
 # Creating a new data frame that only contains the counts of each Category ID
 count <- youtube_trending %>%
   group_by(category_id) %>%
-  summarize(counts = unique((sum(category_id) / category_id)))
+  summarize(counts = n())
 
 # Labeling the Category IDs with their respective categories.
 count$category_id <- c("Film & Animation", "Autos & Vehicles", "Music",

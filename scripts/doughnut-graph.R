@@ -4,6 +4,7 @@ library(RColorBrewer)
 
 ### Reading in the data frame
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
+                             encoding = "UTF-8",
                              stringsAsFactors = FALSE)
 
 # Changing the column name I will be using later to snake_case

@@ -8,7 +8,6 @@ library("knitr")
 library("dplyr")
 source("scripts/doughnut-graph.R")
 source("scripts/daily_views_graph.R")
-
 ```
 ## Introduction
 
@@ -41,4 +40,10 @@ Entertainment, and Sports**, with the combination of the three making up over
 
 ```{r, echo = FALSE }
 trending_categories_plot
+```
+
+### Average Viewership Per Day
+
+```{r, echo = FALSE }
+days_of_week_viewership_plot
 ```

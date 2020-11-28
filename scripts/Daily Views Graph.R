@@ -1,35 +1,39 @@
 ### Bar graph
-### Daily sum of views. Look for high surges. Might correlate to events. (Nick)
+### Average amount of views on any given day
 
 library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
 
-youtube_trending <- read.csv("../data/US_youtube_trending_data.csv", stringsAsFactors = FALSE)
+### Reading in file
+youtube_trending <- read.csv("../data/US_youtube_trending_data.csv",
+  encoding = "UTF-8",
+  stringsAsFactors = FALSE
+)
 
-### Alternate graph 
-### Days of week with most engagement
+### getting total views per day within dataset
 days_of_week_viewership <- youtube_trending %>%
   mutate(day = c(
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-                "Friday", "Saturday"
-                )[as.POSIXlt(substr(publishedAt,1,10))$wday + 1]) %>%
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+    "Friday", "Saturday"
+  )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1]) %>%
   group_by(day) %>%
-  summarise(sum = sum(view_count) ) 
+  summarise(sum = sum(view_count))
 
-days_of_week_viewership$day <- factor(days_of_week_viewership$day, levels =
-                                      c("Sunday", "Monday", "Tuesday",
-                                        "Wednesday", "Thursday", "Friday",
-                                        "Saturday"))
+### Using factors to put the days of the week in the desired order
+days_of_week_viewership$day <- factor(days_of_week_viewership$day,
+  levels =
+    c(
+      "Sunday", "Monday", "Tuesday",
+      "Wednesday", "Thursday", "Friday",
+      "Saturday"
+    )
+)
 
+### Creating a bar graph
 days_of_week_viewership_plot <- ggplot(days_of_week_viewership, ) +
-  geom_bar(stat="identity", mapping = aes(x = day, y = sum, fill = day)) +
+  geom_bar(stat = "identity", mapping = aes(x = day, y = sum, fill = day)) +
   scale_colour_manual(values = names(brewer.pal(6, "Set1"))) +
   labs(x = "Day", y = "Average Views") +
   ggtitle("Average Amount of Views by Day of the Week") +
-  theme(legend.position="none") 
-
-
-
-
-
+  theme(legend.position = "none")

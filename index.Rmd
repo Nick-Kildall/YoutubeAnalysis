@@ -8,6 +8,7 @@ library("knitr")
 library("dplyr")
 source("scripts/doughnut-graph.R")
 source("scripts/daily_views_graph.R")
+source("scripts/boxplot-graph.R")
 ```
 ## Introduction
 
@@ -49,4 +50,18 @@ This plot displays the average amount of views trending videos recieved on a giv
 days_of_week_viewership_plot
 ```
 
-This graph clearly shows that trending videos on Friday recieve nearly triple the average viewership. Additionally, Wednesday is a particularly slow day for YouTube videos. This may mean that popular creators should attempt to have a video on the trending page every Friday because this is when they would likely recieve the highest viewership.
+This graph clearly shows that trending videos on Friday receive nearly triple the average viewership. Additionally, Wednesday is a particularly slow day for YouTube videos. This may mean that popular creators should attempt to have a video on the trending page every Friday because this is when they would likely receive the highest viewership.
+
+### Boxplot Graph
+This graph shows the variation of the time it takes a video to reach the
+trending page after it's published. Most of the data is concentrated between the
+0 to 5 day range, while there are some outliers above 10 days for most 
+categories. Interestingly enough, the graph also included values with negative 
+values. This is because the published date includes the full date and time, 
+whereas the trending date only includes the month and day. For videos to have a 
+negative value of days it took to reach the trending page, it means that the 
+video was wildly popular enough to be trending on the same date it was uploaded.
+
+```{r echo = FALSE}
+days_until_trending_plotly
+```

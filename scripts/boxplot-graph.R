@@ -20,20 +20,19 @@ time_until_trending <- youtube_trending %>%
     trending_date = as.POSIXct(trending_date,
       format = "%Y-%m-%dT%H:%M:%SZ"
     ),
-    days_until_trending = (trending_date - publishedAt) / 86400
+    days_until_trending = (trending_date - publishedAt) / 86400,
+    categoryId = factor(
+      categoryId,
+      levels = c(1, 2, 10, 15, 17, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29),
+      labels = c(
+        "Film & Animation", "Autos & Vehicles", "Music",
+        "Pets & Animals", "Sports", "Travel & Events",
+        "Gaming", "People & Blogs", "Comedy", "Entertainment",
+        "News & Politics", "How to & Style", "Education",
+        "Science & Technology", "Nonprofits & Activism"
+      )
+    )
   )
-
-# convert categoryid into name
-time_until_trending$categoryId <- factor(time_until_trending$categoryId,
-  levels = c(1, 2, 10, 15, 17, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29),
-  labels = c(
-    "Film & Animation", "Autos & Vehicles", "Music",
-    "Pets & Animals", "Sports", "Travel & Events",
-    "Gaming", "People & Blogs", "Comedy", "Entertainment",
-    "News & Politics", "How to & Style", "Education",
-    "Science & Technology", "Nonprofits & Activism"
-  )
-)
 
 # boxplot
 days_until_trending_plot <- ggplot(
@@ -50,7 +49,7 @@ days_until_trending_plot <- ggplot(
   stat_summary(fun.y = mean, geom = "point") +
   xlab("Category ID") +
   ylab("Days Until Trending") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
 # plotly
 days_until_trending_plotly <- ggplotly(days_until_trending_plot,

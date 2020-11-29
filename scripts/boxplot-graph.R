@@ -49,7 +49,8 @@ days_until_trending_plot <- ggplot(
   geom_boxplot(outlier.shape = 8) +
   stat_summary(fun.y = mean, geom = "point") +
   xlab("Category ID") +
-  ylab("Days Until Trending")
+  ylab("Days Until Trending") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 # plotly
 days_until_trending_plotly <- ggplotly(days_until_trending_plot,

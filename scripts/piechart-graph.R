@@ -36,16 +36,19 @@ my_colors <- c(brewer.pal(name = "Paired", n = 8),
 ### Plotly pie chart
 
 trending_categories_plotly <-  plot_ly(count, labels = ~label, values = ~counts,
-                                       type = 'pie',
-                                       textposition = 'inside',
-                                       textinfo = 'label+percent',
-                                       insidetextfont = list(color = 'black'),
-                                       hoverinfo = 'text',
-                                       text = ~paste0('Category: ', category_id,
-                                                     '\nNumber of videos: ', counts,
-                                                     '\nPercentage: ', percentages, '%'),
+                                       type = "pie",
+                                       textposition = "inside",
+                                       textinfo = "label+percent",
+                                       insidetextfont = list(color = "black"),
+                                       hoverinfo = "text",
+                                       text = ~paste0("Category: ", category_id,
+                                                     "\nNumber of videos: ",
+                                                     counts,
+                                                     "\nPercentage: ",
+                                                     percentages, "%"),
                                        marker = list(colors = my_colors,
-                                                     line = list(color = 'black', width = 1)),
+                                                     line = list(color = "black"
+                                                                 , width = 1)),
                                        showlegend = FALSE,
-                                       title = 'Trending Categories by Percentages'
+                                       title = "Trending Categories by Percent"
                                        )

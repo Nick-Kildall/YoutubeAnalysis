@@ -1,5 +1,5 @@
-library(ggplot2)
 library(dplyr)
+library(plotly)
 library(RColorBrewer)
 
 ### Reading in the data frame
@@ -25,34 +25,27 @@ count$category_id <- c("Film & Animation", "Autos & Vehicles", "Music",
 # Getting percentages rounded to two decimal places.
 count$percentages <- round(count$counts / sum(count$counts) * 100, 2)
 
-# Cumulative percentages (top of each rectangle)
-count$ymax <- cumsum(count$percentages)
-
-# Bottom of each rectangle
-count$ymin <- c(0, head(count$ymax, n = -1))
-
-# Label positions
-count$label_position <- (count$ymax + count$ymin) / 2
-
 # Computing labels
-count$label <- paste0(count$category_id, "\n", count$counts)
+count$label <- paste0(count$category_id)
 
 # Needed more than 9 colors, so had to concatenate palettes.
 my_colors <- c(brewer.pal(name = "Paired", n = 8),
              brewer.pal(name = "Pastel2", n = 7))
 
-### Doughnut graph
-trending_categories_plot <- ggplot(count, aes(ymax = ymax, ymin = ymin,
-                                              xmax = 4, xmin = 3,
-                                              fill = category_id)) +
-  geom_rect(color = "black") +
-  geom_label(x = 4.15,
-             aes(y = label_position,
-                 label = paste(category_id, "\n", percentages, "%")),
-             size = 2.25) +
-  scale_color_manual(values = my_colors) +
-  coord_polar(theta = "y") +
-  xlim(c(0, 4)) +
-  theme_void() +
-  theme(legend.position = "none") +
-  ggtitle("Percentage of categories that reach the trending section")
+
+### Plotly pie chart
+
+trending_categories_plotly <-  plot_ly(count, labels = ~label, values = ~counts,
+                                       type = 'pie',
+                                       textposition = 'inside',
+                                       textinfo = 'label+percent',
+                                       insidetextfont = list(color = 'black'),
+                                       hoverinfo = 'text',
+                                       text = ~paste0('Category: ', category_id,
+                                                     '\nNumber of videos: ', counts,
+                                                     '\nPercentage: ', percentages, '%'),
+                                       marker = list(colors = my_colors,
+                                                     line = list(color = 'black', width = 1)),
+                                       showlegend = FALSE,
+                                       title = 'Trending Categories by Percentages'
+                                       )

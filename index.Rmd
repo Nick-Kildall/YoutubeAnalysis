@@ -6,7 +6,7 @@ output: html_document
 ```{r setup, echo = FALSE, message = F, include = F}
 library("knitr")
 library("dplyr")
-source("scripts/doughnut-graph.R")
+source("scripts/piechart-graph.R")
 source("scripts/daily_views_graph.R")
 source("scripts/boxplot-graph.R")
 ```
@@ -32,15 +32,15 @@ countries.
 
 ## Charts
 
-### Doughnut Graph
-This doughnut graph displays the distribution of each video category found 
+### Trending Categories by Percentage
+This pie chart displays the distribution of each video category found 
 within the trending section. From looking at the graph, it is clear to see that
 the majority of videos that make it into the trending section are **Music, 
 Entertainment, and Sports**, with the combination of the three making up over
 50% of the fifteen unique categories that were found in our data.
 
-```{r, echo = FALSE }
-trending_categories_plot
+```{r, echo = FALSE, warning = F}
+trending_categories_plotly
 ```
 
 ### Average Viewership Per Day

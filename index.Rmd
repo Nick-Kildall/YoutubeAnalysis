@@ -39,14 +39,14 @@ the majority of videos that make it into the trending section are **Music,
 Entertainment, and Sports**, with the combination of the three making up over
 50% of the fifteen unique categories that were found in our data.
 
-```{r, echo = FALSE }
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE }
 trending_categories_plot
 ```
 
 ### Average Viewership Per Day
 This plot displays the average amount of views trending videos recieved on a given day (Sunday to Saturday). We created this chart to see if there is a relationship between average viewership and the day of the week. 
 
-```{r, echo = FALSE }
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE }
 days_of_week_viewership_plot
 ```
 
@@ -62,6 +62,6 @@ whereas the trending date only includes the month and day. For videos to have a
 negative value of days it took to reach the trending page, it means that the 
 video was wildly popular enough to be trending on the same date it was uploaded.
 
-```{r echo = FALSE}
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE }
 days_until_trending_plotly
 ```

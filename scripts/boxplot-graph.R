@@ -21,6 +21,10 @@ time_until_trending <- youtube_trending %>%
       format = "%Y-%m-%dT%H:%M:%SZ"
     ),
     days_until_trending = (trending_date - publishedAt) / 86400,
+    #getting rid of negative time values and replacing them with 0
+    days_until_trending = replace(days_until_trending,
+                                  which(days_until_trending < 0),
+                                  0),
     categoryId = factor(
       categoryId,
       levels = c(1, 2, 10, 15, 17, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29),

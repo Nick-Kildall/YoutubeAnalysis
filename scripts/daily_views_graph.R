@@ -32,9 +32,9 @@ days_of_week_viewership$day <- factor(days_of_week_viewership$day,
 
 ### Creating a bar graph
 days_of_week_viewership_plot <- ggplot(data = days_of_week_viewership,
-       aes(x = day, y = sum_view, fill = day)) +
+       aes(x = day, y = sum_view, fill = day, width = .75)) +
   geom_bar(position = "dodge", stat = "identity") +
-  geom_text(aes(label = sum_view), 
+  geom_text(aes(label = prettyNum(sum_view, big.mark=",")), 
             position = position_dodge(width = 0.9), vjust = -.5) +
   scale_colour_manual(values = names(brewer.pal(6, "Set1"))) +
   labs(x = "Day", y = "Average Views") +

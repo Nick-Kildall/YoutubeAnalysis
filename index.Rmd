@@ -21,10 +21,10 @@ it into YouTube's trending section _through summaries, tables, and visual
 representations_ of our findings from our data set. The data set we will be
 using to conduct this analysis was created and organized by 
 [Rishav Sharma.](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv)
-We pulled the data set on November 14th, 2020 and thus the data we are analyzing
-contains values from August 12th, 2020 to November 14th, 2020. It is important
-to note that our analysis is only for videos **in the United States** and does 
-not contain correlations between the factors we are analyzing and other 
+We pulled this data set on November 14th, 2020 and thus the data we are 
+analyzing contains values from August 12th, 2020 to November 14th, 2020. It is 
+important to note that our analysis is only for videos **in the United States** 
+and does not contain correlations between the factors we are analyzing and other 
 countries.
 
 ## Summary Information
@@ -33,16 +33,28 @@ countries.
 ## Charts
 
 ### Trending Categories by Percentage
-This pie chart displays the distribution of each video category found 
-within the trending section. From looking at the graph, it is clear to see that
-the majority of videos that make it into the trending section are **Music, 
-Entertainment, and Sports**, with the combination of the three making up over
-50% of the fifteen unique categories that were found in our data.
+This pie chart displays the distribution of each video category found within the
+trending section as a percentage. Each section of the pie represents a 
+proportion to the total number of videos within the trending section during the 
+3 month period we pulled our data from. When hovering over a specific section of
+the graph you are provided with the category name, the number of videos that 
+fall under that specific category from our data, and the percentage of the whole
+rounded to two decimal places that represents how frequent a particular
+category makes it into the trending section. We created this chart to get an 
+idea of what videos make it onto YouTube's trending section more frequently than
+others.
 
 ```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F}
 trending_categories_plotly
 ```
 
+From looking at the graph, it is clear to see that the majority of videos that 
+make it into the trending section are **Music, Entertainment, and Sports**, with
+the combination of the three making up over 50% of the fifteen unique categories
+that were found in our data. An interesting bit of information that I found was
+that YouTube has more than just 15 unique categories, but the trending section
+seems to group several categories into a main category to be used in their
+trending section. 
 ### Average Viewership Per Day
 This plot displays the average amount of views trending videos recieved on a given day (Sunday to Saturday). We created this chart to see if there is a relationship between average viewership and the day of the week. 
 

@@ -54,10 +54,12 @@ are extremely helpful to know when working with the dataset because they
 let you manipulate the data to pull out useful information.
 
 ## Aggregate Table
-For the table, we grouped by categoryId from the dataset to see which category 
+For the table, we grouped by and sorted by categoryId from the dataset to see which category 
 trends the most, and other details that might come with it. We found out that 
-**Gaming** came out as the most trending category with the highest average 
-views. As for the title stat, we added that to see if having a video title in
+**Music** came out as the most trending category with the highest average 
+views, and most comments, while the category with the most likes is 
+**Film & Animation**.
+As for the title stat, we added that to see if having a video title in
 all caps can influence the ability to trends as shown on the table.
 
 ```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE}

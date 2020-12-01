@@ -1,6 +1,6 @@
 library(dplyr)
 library(stringr)
-library("lintr")
+
 
 # create function that creates a table with aggregated stats
 get_table_info <- function(youtube) {
@@ -35,7 +35,8 @@ get_table_info <- function(youtube) {
 
   # get the average amnount of comments on a trending video based on categoryId
   titlestat <- youtube %>%
-    mutate(per_cap = str_count(youtube$title, "[A-Z]") / nchar(youtube$title)) %>%
+    mutate(per_cap = str_count(youtube$title, "[A-Z]") / 
+             nchar(youtube$title)) %>%
     group_by(categoryId) %>%
     summarise(avg_per_cap = paste0(round(100 * mean(per_cap), 1), "%")) %>%
     pull(avg_per_cap)

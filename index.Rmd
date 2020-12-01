@@ -51,7 +51,7 @@ trends the most, and other details that might come with it. We found out that
 views. As for the title stat, we added that to see if having a video title in
 all caps can influence the ability to trends as shown on the table.
 ```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F}
-get_table_info
+
 ```
 
 ## Charts
@@ -63,8 +63,8 @@ the majority of videos that make it into the trending section are **Music,
 Entertainment, and Sports**, with the combination of the three making up over
 50% of the fifteen unique categories that were found in our data.
 
-```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F}
-trending_categories_plotly
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F, message = FALSE}
+trending_categories_graph(youtube_trending)
 ```
 
 ### Average Viewership Per Day

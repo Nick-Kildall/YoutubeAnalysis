@@ -1,14 +1,5 @@
-
-library("httr")
-library("jsonlite")
-
 library(dplyr)
-library(leaflet)
-library(ggplot2)
 library(stringr)
-
-youtube <- read.csv("data/US_youtube_trending_data.csv", stringsAsFactors = 
-                    FALSE)
 
 get_table_info <- function(youtube) {
   views_mean <- youtube%>%

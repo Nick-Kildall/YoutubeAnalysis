@@ -45,7 +45,14 @@ the latest recorded date is `r summary_info$latest_date`.
 These are the column names: `r summary_info$column_names`.
 
 ## Aggregate Table
-
+For the table, we grouped by categoryId from the dataset to see which category 
+trends the most, and other details that might come with it. We found out that 
+**Gaming** came out as the most trending category with the highest average 
+views. As for the title stat, we added that to see if having a video title in
+all caps can influence the ability to trends as shown on the table.
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F}
+get_table_info
+```
 
 ## Charts
 

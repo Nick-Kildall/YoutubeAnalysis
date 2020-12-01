@@ -15,6 +15,7 @@ source("scripts/piechart-graph.R")
 source("scripts/daily_views_graph.R")
 source("scripts/boxplot-graph.R")
 source("scripts/summary_info_script.R")
+source("scripts/Grouped_by.R")
 ```
 ## Introduction
 
@@ -50,8 +51,8 @@ trends the most, and other details that might come with it. We found out that
 **Gaming** came out as the most trending category with the highest average 
 views. As for the title stat, we added that to see if having a video title in
 all caps can influence the ability to trends as shown on the table.
-```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F}
-get_table_info
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE}
+kable(get_table_info(youtube_trending))
 ```
 
 ## Charts

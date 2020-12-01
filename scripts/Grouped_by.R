@@ -42,6 +42,5 @@ get_table_info <- function(youtube) {
   return (aggregate)
 }
 
-aggregate_table <- get_table_info(youtube)
 
 

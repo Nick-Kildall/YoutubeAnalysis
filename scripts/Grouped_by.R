@@ -14,12 +14,10 @@ get_table_info <- function(youtube) {
   views_mean <- youtube%>%
     group_by(categoryId)%>%
     summarise(averageviews = mean(view_count))%>%
-    head(1)%>%
     pull(averageviews)
   averagelikes <- youtube%>%
     group_by(categoryId)%>%
     summarise(averagelikes = mean(likes))%>%
-    head(1)%>%
     pull(averagelikes)
   topchannel <- youtube%>%
     select(channelTitle, view_count, categoryId)%>%

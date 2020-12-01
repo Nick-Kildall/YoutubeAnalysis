@@ -1,3 +1,4 @@
+### returns a list of basic information about the given dataset
 get_summary_info <- function(dataset) {
   ret <- list()
   ret$rows <- nrow(dataset)

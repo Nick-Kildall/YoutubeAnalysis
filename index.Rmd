@@ -29,7 +29,7 @@ representations_ of our findings from our data set. The data set we will be
 using to conduct this analysis was created and organized by 
 [Rishav Sharma.](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv)
 We pulled the data set on November 14th, 2020 and thus the data we are analyzing
-contains values from August 12th, 2020 to November 14th, 2020. It is important
+contains values from August 3rd, 2020 to November 14th, 2020. It is important
 to note that our analysis is only for videos **in the United States** and does 
 not contain correlations between the factors we are analyzing and other 
 countries.
@@ -64,7 +64,7 @@ the majority of videos that make it into the trending section are **Music,
 Entertainment, and Sports**, with the combination of the three making up over
 50% of the fifteen unique categories that were found in our data.
 
-```{r, fig.align='center',out.extra='angle=90', echo = FALSE, warning = F, message = FALSE}
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE, warning = FALSE}
 trending_categories_graph(youtube_trending)
 ```
 

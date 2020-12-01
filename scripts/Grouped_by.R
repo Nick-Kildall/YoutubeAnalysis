@@ -10,32 +10,37 @@ youtube <- read.csv("data/US_youtube_trending_data.csv", stringsAsFactors = FALS
 
 
 get_table_info <- function(youtube) {
-  table <- list()
-  table$views_mean <- youtube%>%
+
+  views_mean <- youtube%>%
     group_by(categoryId)%>%
     summarise(averageviews = mean(view_count))%>%
-    head(1)%>%
     pull(averageviews)
-  table$averagelikes <- youtube%>%
+  averagelikes <- youtube%>%
     group_by(categoryId)%>%
     summarise(averagelikes = mean(likes))%>%
-    head(1)%>%
     pull(averagelikes)
-  table$topchannel <- youtube%>%
-    group_by(categoryId, channelTitle)%>%
-    summarise(topchannel = max(view_count))%>%
-    head(1)%>%
+  topchannel <- youtube%>%
+    select(channelTitle, view_count, categoryId)%>%
+    group_by(categoryId)%>%
+    filter(view_count == max(view_count))%>%
+    arrange(categoryId)
     pull(channelTitle)
-  table$commentsmean <- youtube%>%
-    group_by(categoryId, channelTitle, comment_count)%>%
-    summarise(commentsmean = mean(comment_count))%>%
-    head(1)%>%
+  commentsmean <- youtube%>%
+    select(comment_count, categoryId)%>%
+    group_by(categoryId)%>%
+    summarise(comment_count = mean(comment_count))%>%
+    arrange(categoryId)
     pull(comment_count)
-  table$titlestat <- youtube%>%
-    group_by(categoryId, channelTitle, comment_count, title)%>%
-    str_count(youtube$title, "[A-Z]") / nchar(youtube$title)
-  return (table)
+  titlestat <- youtube%>%
+    mutate(per_cap = str_count(youtube$title, "[A-Z]") / nchar(youtube$title))%>%
+    group_by(categoryId)%>%
+    summarise(avg_per_cap = paste0(round(100 * mean(per_cap), 1), "%"))%>%
+    pull(avg_per_cap)
+  data.frame(views_mean, averagelikes, topchannel, commentsmean, titlestat)
+  return ()
 }
+
+data.frame
 
 
 str_count(youtube$title, "[A-Z]") / nchar(youtube$title)

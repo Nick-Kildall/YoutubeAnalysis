@@ -4,11 +4,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 
-# read youtube df
-youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
-  encoding = "UTF-8",
-  stringsAsFactors = FALSE
-)
+time_until_trending_graph <- function(youtube_trending) { 
 
 # create df that shows difference in publish/trending time
 time_until_trending <- youtube_trending %>%
@@ -60,3 +56,5 @@ days_until_trending_plotly <- ggplotly(days_until_trending_plot,
   height = 650,
   width = 1100
 )
+return(days_until_trending_plotly)
+}

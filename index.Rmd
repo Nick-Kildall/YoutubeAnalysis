@@ -77,16 +77,25 @@ get_daily_views_plot(youtube_trending)
 
 This graph clearly shows that trending videos on Friday receive nearly triple the average viewership. Additionally, Wednesday is a particularly slow day for YouTube videos. This may mean that popular creators should attempt to have a video on the trending page every Friday because this is when they would likely receive the highest viewership.
 
-### Boxplot Graph
+### Amount of Time for a Video to Trend
 This graph shows the variation of the time it takes a video to reach the
-trending page after it's published. Most of the data is concentrated between the
-0 to 5 day range, while there are some outliers above 10 days for most 
-categories. Interestingly enough, the graph also included values with negative 
-values. This is because the published date includes the full date and time, 
-whereas the trending date only includes the month and day. For videos to have a 
-negative value of days it took to reach the trending page, it means that the 
-video was wildly popular enough to be trending on the same date it was uploaded.
+trending page after it’s published. The graph provides us with the mean, median,
+min, and max values of how long it took a video to trend and is grouped by 
+category.
 
-```{r, fig.align='center',out.extra='angle=90', echo = FALSE }
-days_until_trending_plotly
+Most of the data is concentrated between the 0 to 5 day range, while there are 
+some outliers above 10 days for most categories. Interestingly enough, the data
+also included values with negative values. This is because the published date
+includes the full date and time, whereas the trending date only includes the 
+month and day. For videos to have a negative value of days it took to reach the 
+trending page, it means that the video was wildly popular enough to be trending 
+on the same date it was uploaded. When plotting the graph, I felt that it was 
+best to replace the negative time values with a 0 in order to keep consistency 
+because negative time values are not technically correct.
+```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE, warning = FALSE}
+time_until_trending_graph(youtube_trending)
 ```
+Based on the information provided by the graph, the Music category seems to have
+an overwhelming amount of outliers that began trending far after the video was 
+published. This is most likely due to the fact that new music takes time to 
+circulate around before it becomes popular on mainstream media.

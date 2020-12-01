@@ -35,15 +35,23 @@ not contain correlations between the factors we are analyzing and other
 countries.
 
 ## Summary Information
+
 ```{r include = FALSE}
 summary_info <- get_summary_info(youtube_trending)
 ```
+
 Our dataset has `r summary_info$rows` rows and `r summary_info$columns` columns. 
+This is a large dataframe which gave us a lot of 
+different ways to analyze our data.
 
-The earliest date in our dataset is `r summary_info$earliest_date` and 
-the latest recorded date is `r summary_info$latest_date`.
+The earliest date in our dataset is `r summary_info$earliest_date` and the
+latest recorded date is `r summary_info$latest_date`. This dataset only
+covers recent months. This is useful to keep in mind when anaysing data
+because this most likely effects the results in some way.
 
-These are the column names: `r summary_info$column_names`.
+These are the column names: `r summary_info$column_names`. These values
+are extremely helpful to know when working with the dataset because they
+let you manipulate the data to pull out useful information.
 
 ## Aggregate Table
 For the table, we grouped by categoryId from the dataset to see which category 
@@ -51,6 +59,7 @@ trends the most, and other details that might come with it. We found out that
 **Gaming** came out as the most trending category with the highest average 
 views. As for the title stat, we added that to see if having a video title in
 all caps can influence the ability to trends as shown on the table.
+
 ```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE}
 kable(get_table_info(youtube_trending),
       col.names = c("CATEGORY", "AVERAGE VIEWS", "AVERAGE LIKES", "TOP CHANNEL",
@@ -85,13 +94,23 @@ seems to group several categories into a main category to be used in their
 trending section. 
 
 ### Average Viewership Per Day
-This plot displays the average amount of views trending videos recieved on a given day (Sunday to Saturday). We created this chart to see if there is a relationship between average viewership and the day of the week. 
+This plot displays the average amount of views trending videos recieved 
+on a given day (Sunday to Saturday). We created this chart to see if there
+is a relationship between average viewership and the day of the week. 
+
+As you can tell this is a barplot. To make it easier to read we
+included the numbers the bars represent directly above their 
+respective bar. 
 
 ```{r, fig.align='center',out.extra='angle=90', echo=FALSE, message=FALSE}
 get_daily_views_plot(youtube_trending)
 ```
 
-This graph clearly shows that trending videos on Friday receive nearly triple the average viewership. Additionally, Wednesday is a particularly slow day for YouTube videos. This may mean that popular creators should attempt to have a video on the trending page every Friday because this is when they would likely receive the highest viewership.
+This graph clearly shows that trending videos on Friday receive nearly triple
+the average viewership. Additionally, Wednesday is a particularly slow day
+for YouTube videos. This may mean that popular creators should attempt to
+have a video on the trending page every Friday because this is when they
+would likely receive the highest viewership.
 
 ### Amount of Time for a Video to Trend
 This graph shows the variation of the time it takes a video to reach the
@@ -108,9 +127,11 @@ trending page, it means that the video was wildly popular enough to be trending
 on the same date it was uploaded. When plotting the graph, I felt that it was 
 best to replace the negative time values with a 0 in order to keep consistency 
 because negative time values are not technically correct.
+
 ```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE, warning = FALSE}
 time_until_trending_graph(youtube_trending)
 ```
+
 Based on the information provided by the graph, the Music category seems to have
 an overwhelming amount of outliers that began trending far after the video was 
 published. This is most likely due to the fact that new music takes time to 

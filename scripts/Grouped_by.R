@@ -35,9 +35,12 @@ get_table_info <- function(youtube) {
     mutate(per_cap = str_count(youtube$title, "[A-Z]") / nchar(youtube$title))%>%
     group_by(categoryId)%>%
     summarise(avg_per_cap = paste0(round(100 * mean(per_cap), 1), "%"))%>%
-    pull()
-  return (table)
+    pull(avg_per_cap)
+  data.frame(views_mean, averagelikes, topchannel, commentsmean, titlestat)
+  return ()
 }
+
+data.frame
 
 
 str_count(youtube$title, "[A-Z]") / nchar(youtube$title)

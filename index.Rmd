@@ -52,7 +52,10 @@ trends the most, and other details that might come with it. We found out that
 views. As for the title stat, we added that to see if having a video title in
 all caps can influence the ability to trends as shown on the table.
 ```{r, fig.align='center',out.extra='angle=90', echo = FALSE, message = FALSE}
-kable(get_table_info(youtube_trending))
+kable(get_table_info(youtube_trending),
+      col.names = c("CATEGORY", "AVERAGE VIEWS", "AVERAGE LIKES", "TOP CHANNEL",
+                    "AVERAGE COMMENTS", "TITLE STATISTICS"),
+      align = 'c')
 ```
 
 ## Charts

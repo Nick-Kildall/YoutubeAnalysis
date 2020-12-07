@@ -6,6 +6,14 @@ library(plotly)
 library(dplyr)
 library(shinythemes)
 
+### Nick
+
+### Mitchell
+
+### Quang
+
+### Isaac
+
 ui <- fluidPage(
   theme = shinytheme("slate"),
   

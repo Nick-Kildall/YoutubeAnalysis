@@ -20,17 +20,31 @@ library("shinydashboard")
 header <- dashboardHeader(title = "YouTube Trending Data Analysis")
 
 sidebar <- dashboardSidebar(
-  sidebarMenu("Stuff",
-              tabName = "Pie Chart")
+  sidebarMenu(
+    menuItem("Introduction", tabName = "intro"),
+    menuItem("Graph One", tabName = "barchart")
+  )
+)
+
+graph_one <- fluidRow(
+  box(plotOutput("barchart", height = 300)),
+  
+  box(
+    title = "Controls",
+    sliderInput("slider", "Number of observations:", 1, 100, 50)
+  )
 )
 
 body <- dashboardBody(
-  fluidRow(
-    box(plotOutput("barchart", height = 250)),
+  ### pages
+  tabItems(
+    tabItem(tabName = "intro",
+            h2("Dashboard tab content")
+    ),
     
-    box(
-      title = "Controls",
-      sliderInput("slider", "Number of observations:", 1, 100, 50)
+    tabItem(tabName = "barchart",
+            h2("Widgets tab content"),
+            graph_one
     )
   )
 )

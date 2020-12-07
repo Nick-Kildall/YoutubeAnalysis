@@ -1,10 +1,11 @@
 # ui.R
 
 # Loading in libraries
-library(shiny)
-library(plotly)
-library(dplyr)
-library(shinythemes)
+library("shiny")
+library("plotly")
+library("dplyr")
+library("shinythemes")
+library("shinydashboard")
 
 ### Nick
 
@@ -14,8 +15,25 @@ library(shinythemes)
 
 ### Isaac
 
-ui <- fluidPage(
-  theme = shinytheme("slate"),
-  
-  titlePanel("YouTube Trending Data Analysis")
+
+
+header <- dashboardHeader(title = "YouTube Trending Data Analysis")
+
+sidebar <- dashboardSidebar(
+  sidebarMenu("Stuff",
+              tabName = "Pie Chart")
+)
+
+body <- dashboardBody(
+  tabItems(
+    tabItem(
+      tabName = "Pie Chart"
+    )
+  )
+)
+
+ui <- dashboardPage(
+  header,
+  sidebar,
+  body
 )

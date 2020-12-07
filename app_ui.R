@@ -37,3 +37,9 @@ ui <- dashboardPage(
   sidebar,
   body
 )
+
+ui_final <- navbarPage(
+  "Midwest Dataset",
+  tabPanel("page one", page_one),
+  tabPanel("page two", page_two)
+)

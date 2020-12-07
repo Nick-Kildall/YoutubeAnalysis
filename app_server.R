@@ -4,24 +4,6 @@ library(stringr)
 library(plotly)
 library(RColorBrewer)
 
-days_of_week_viewership <- youtube_trending %>%
-  mutate(day = c(
-    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-    "Friday", "Saturday"
-  )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1]) %>%
-  group_by(day) %>%
-  summarise(sum_view = sum(view_count))
-
-### Using factors to put the days of the week in the desired order
-days_of_week_viewership$day <- factor(days_of_week_viewership$day,
-                                      levels =
-                                        c(
-                                          "Sunday", "Monday", "Tuesday",
-                                          "Wednesday", "Thursday", "Friday",
-                                          "Saturday"
-                                        )
-)
-
 server <- function(input, output) {
   
   ### Mitchell
@@ -29,6 +11,24 @@ server <- function(input, output) {
   
   ### Nick
   output$barchart <- renderPlot({
+    
+    days_of_week_viewership <- youtube_trending %>%
+      mutate(day = c(
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+        "Friday", "Saturday"
+      )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1]) %>%
+      group_by(day) %>%
+      summarise(sum_view = sum(view_count))
+    
+    ### Using factors to put the days of the week in the desired order
+    days_of_week_viewership$day <- factor(days_of_week_viewership$day,
+                                          levels =
+                                            c(
+                                              "Sunday", "Monday", "Tuesday",
+                                              "Wednesday", "Thursday", "Friday",
+                                              "Saturday"
+                                            )
+    )
     
     ### Creating a bar graph
     days_of_week_viewership_plot <- ggplot(

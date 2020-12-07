@@ -25,9 +25,12 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
-  tabItems(
-    tabItem(
-      tabName = "Pie Chart"
+  fluidRow(
+    box(plotOutput("barchart", height = 250)),
+    
+    box(
+      title = "Controls",
+      sliderInput("slider", "Number of observations:", 1, 100, 50)
     )
   )
 )

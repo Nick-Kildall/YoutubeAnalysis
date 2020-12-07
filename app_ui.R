@@ -7,5 +7,7 @@ library(dplyr)
 library(shinythemes)
 
 ui <- fluidPage(
+  theme = shinytheme("slate"),
   
+  titlePanel("YouTube Trending Data Analysis")
 )

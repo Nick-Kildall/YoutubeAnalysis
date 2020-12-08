@@ -10,7 +10,13 @@ library("shinydashboard")
 
 
 header <- dashboardHeader(titleWidth = '100%',
-                          title = "YouTube Trending Data Analysis")
+                          title = span(
+                            tags$img(src="img/youtubetrending.jpg", width = '100%'),
+                            column(12, class="title-box", 
+                                   tags$h2(class="primary-subtitle", style='margin-top:10px;',  'YouTube Trending Data Analysis')
+                            )
+                          )
+)
                           
                           
 

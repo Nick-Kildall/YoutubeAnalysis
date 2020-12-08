@@ -15,6 +15,13 @@ youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              stringsAsFactors = FALSE
 )
 
+### Difficult mutate calculation. Only needs to be done once.
+youtube_days <- youtube_trending %>% mutate(day = c(
+  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+  "Friday", "Saturday"
+)[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1])
+
+### Main Server Function
 server <- function(input, output) {
   
   ### Mitchell
@@ -72,31 +79,29 @@ server <- function(input, output) {
   ### shows output of user input
   output$nick_msg_two <- renderText(paste0("this is the output of the button: ", input$cat_input))
   
-  days_of_week_viewership <- reactive({
+  youtube_filtered <- reactive({
     
-    result <- youtube_trending %>% mutate(day = c(
-        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-        "Friday", "Saturday"
-      )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1]) %>%
-      filter(categoryId == input$cat_input)
+    result <- youtube_days %>%
+      filter(categoryId == input$cat_input) %>%
       group_by(day) %>%
       summarise(sum_view = sum(view_count))
       
-    result$day <- factor(days_of_week_viewership$day,
-                         levels =
-                           c(
-                             "Sunday", "Monday", "Tuesday",
-                             "Wednesday", "Thursday", "Friday",
-                             "Saturday"
-                           )
+    result$day <- factor(
+      result$day,
+        levels =
+          c(
+            "Sunday", "Monday", "Tuesday",
+            "Wednesday", "Thursday", "Friday",
+            "Saturday"
+        )
     )
     
-    
+    return(result)
   })
   
   output$barchart <- renderPlot({
     ggplot(
-      data = days_of_week_viewership(),
+      data = youtube_filtered(),
       aes(x = day, y = sum_view, fill = day, width = .75)
     ) +
     geom_bar(position = "dodge", stat = "identity", colour = "black") +

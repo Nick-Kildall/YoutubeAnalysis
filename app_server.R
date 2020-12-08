@@ -15,13 +15,110 @@ youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              stringsAsFactors = FALSE
 )
 
-
-
 server <- function(input, output) {
   
   ### Mitchell
+  
+  date <- youtube_trending %>%
+    mutate(month = substr(publishedAt, 6, 7)) %>%
+    group_by(month, categoryId) %>%
+    summarize(counts = n())
+  
+  date$month[date$month == "08"] <- "August"
+  date$month[date$month == "09"] <- "September"
+  date$month[date$month == "10"] <- "October"
+  date$month[date$month == "11"] <- "November"
+  
+  date$categoryId[date$categoryId == "1"] <- "Film & Animation"
+  date$categoryId[date$categoryId == "2"] <- "Autos & Vehicles"
+  date$categoryId[date$categoryId == "10"] <- "Music"
+  date$categoryId[date$categoryId == "15"] <- "Pets & Animals"
+  date$categoryId[date$categoryId == "17"] <- "Sports"
+  date$categoryId[date$categoryId == "19"] <- "Travel & Events"
+  date$categoryId[date$categoryId == "20"] <- "Gaming"
+  date$categoryId[date$categoryId == "22"] <- "People & Blogs"
+  date$categoryId[date$categoryId == "23"] <- "Comedy"
+  date$categoryId[date$categoryId == "24"] <- "Entertainment"
+  date$categoryId[date$categoryId == "25"] <- "News & Politics"
+  date$categoryId[date$categoryId == "26"] <- "How to & Style"
+  date$categoryId[date$categoryId == "27"] <- "Education"
+  date$categoryId[date$categoryId == "28"] <- "Science & Technology"
+  date$categoryId[date$categoryId == "29"] <- "Nonprofits & Activism"
+  
+  alldates <- youtube_trending %>%
+    group_by(categoryId) %>%
+    summarize(counts = n())
+  
+  alldates$categoryId <- c("Film & Animation", "Autos & Vehicles", "Music",
+                           "Pets & Animals", "Sports", "Travel & Events", "Gaming",
+                           "People & Blogs", "Comedy", "Entertainment",
+                           "News & Politics", "How to & Style", "Education",
+                           "Science & Technology", "Nonprofits & Activism")
+  
+  categories_by_date <- reactive({
+    if ("ALL" %in% input$piechart) {
+      categories_by_date <- alldates
+    } else if ("August" %in% input$piechart) {
+      categories_by_date <- date %>%
+        filter(month == "August")
+    } else if ("September" %in% input$piechart) {
+      categories_by_date <- date %>%
+        filter(month == "September")
+    } else if ("October" %in% input$piechart) {
+      categories_by_date <- date %>%
+        filter(month == "October")
+    } else if ("November" %in% input$piechart) {
+      categories_by_date <- date %>%
+        filter(month == "November")
+    }
+    return(categories_by_date)
+  })
+  
+  # Getting percentages rounded to two decimal places.
+  percentages <- reactive({
+    if ("ALL" %in% input$piechart) {
+      round(alldates$counts / sum(alldates$counts) * 100, 2)
+    } else {
+      round(categories_by_date$counts / sum(categories_by-date$counts) * 100, 2)
+    }
+  })
+  
+  # Computing labels
+  label <- reactive({
+    if ("ALL" %in% input$piechart) {
+      paste0(alldates$categoryId)
+    } else {
+      paste0(categories_by_date$categoryId)
+    }
+  })
+  
+  # Needed more than 9 colors, so had to concatenate palettes.
+  my_colors <- c(brewer.pal(name = "Paired", n = 8),
+                 brewer.pal(name = "Pastel2", n = 7))
+  
   output$piechart <- renderPlotly({
-    trending_categories_graph(youtube_trending)
+    plot_ly(categories_by_date,
+            labels = ~label,
+            values = ~counts,
+            type = "pie",
+            textposition = "inside",
+            textinfo = "label+percent",
+            insidetextfont = list(color = "black"),
+            hoverinfo = "text",
+            text = ~paste0("Category: ",
+                           categoryId,
+                           "\nNumber of videos: ",
+                           counts,
+                           "\nPercentage: ",
+                           percentages, "%"),
+            marker = list(colors = my_colors,
+                          line =
+                            list(color = "black",
+                                 width = 1)),
+            showlegend = FALSE,
+            title =
+              "Trending Categories by Percent"
+    )
   })
   
   ### Nick

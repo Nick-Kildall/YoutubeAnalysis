@@ -21,10 +21,11 @@ header <- dashboardHeader(title = "YouTube Trending Data Analysis")
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    menuItem("Introduction", tabName = "intro"),
-    menuItem("Graph One", tabName = "barchart"),
-    menuItem("Graph Two", tabName = "piechart"),
-    menuItem("Test Graph", tabName = "testchart")
+    menuItem("Introduction", tabName = "Introduction"),
+    menuItem("Graph One", tabName = "Barchart"),
+    menuItem("Graph Two", tabName = "Piechart"),
+    menuItem("Graph Three", tabName = "Quang's page"),
+    menuItem("Summary", tabName = "Summary")
   )
 )
 
@@ -41,30 +42,29 @@ graph_two <- fluidRow(
   box(plotlyOutput("piechart", height = 300))
 )
 
-graph_test <- fluidRow(
-  box(plotlyOutput("testchart", height = 300))
-)
-
 body <- dashboardBody(
   ### pages
   tabItems(
-    tabItem(tabName = "intro",
+    tabItem(tabName = "Introduction",
             h2("Dashboard tab content")
     ),
     
-    tabItem(tabName = "barchart",
+    tabItem(tabName = "Barchart",
             h2("Widgets tab content"),
             graph_one
     ),
     
-    tabItem(tabName = "piechart",
+    tabItem(tabName = "Piechart",
             h2("Trending Categories"),
             graph_two
     ),
     
-    tabItem(tabName = "testchart",
-            h2("Trending Categories"),
-            testchart
+    tabItem(tabName = "Quang's page",
+            h2("blah")
+    ),
+    
+    tabItem(tabName = "Summary",
+            h2("Blah")
     )
   )
 )

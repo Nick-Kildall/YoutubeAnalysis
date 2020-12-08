@@ -23,7 +23,8 @@ sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Introduction", tabName = "intro"),
     menuItem("Graph One", tabName = "barchart"),
-    menuItem("Graph Two", tabName = "piechart")
+    menuItem("Graph Two", tabName = "piechart"),
+    menuItem("Test Graph", tabName = "testchart")
   )
 )
 
@@ -40,6 +41,10 @@ graph_two <- fluidRow(
   box(plotlyOutput("piechart", height = 300))
 )
 
+graph_test <- fluidRow(
+  box(plotlyOutput("testchart", height = 300))
+)
+
 body <- dashboardBody(
   ### pages
   tabItems(
@@ -54,7 +59,13 @@ body <- dashboardBody(
     
     tabItem(tabName = "piechart",
             h2("Trending Categories"),
-            graph_two)
+            graph_two
+    ),
+    
+    tabItem(tabName = "testchart",
+            h2("Trending Categories"),
+            testchart
+    )
   )
 )
 

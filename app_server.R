@@ -4,6 +4,12 @@ library(stringr)
 library(plotly)
 library(RColorBrewer)
 
+source("scripts/piechart-graph.R")
+source("scripts/daily_views_graph.R")
+source("scripts/boxplot-graph.R")
+source("scripts/summary_info_script.R")
+source("scripts/Grouped_by.R")
+
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              encoding = "UTF-8",
                              stringsAsFactors = FALSE
@@ -85,6 +91,11 @@ server <- function(input, output) {
   })
   
   ### Nick
+  
+  output$test <- renderPlot({
+    get_daily_views_plot(youtube_trending)
+  })
+  
   output$barchart <- renderPlot({
     
     ### Creating a bar graph

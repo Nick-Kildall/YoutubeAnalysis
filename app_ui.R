@@ -35,10 +35,10 @@ graph_one <- fluidRow(
       inputId = "cat_input", label = "Category Type",
       choices = list(
           "Film & Animation" = 1, "Autos & Vehicles" = 2, "Music" = 10,
-          "Pets & Animals" =15, "Sports"=17, "Travel & Events"=19,
-          "Gaming"=20, "People & Blogs"=22, "Comedy"=23, "Entertainment"=24,
-          "News & Politics"=25, "How to & Style"=26, "Education"=27,
-          "Science & Technology"=28, "Nonprofits & Activism"=29
+          "Pets & Animals" = 15, "Sports" = 17, "Travel & Events" = 19,
+          "Gaming" = 20, "People & Blogs" = 22, "Comedy" = 23, "Entertainment" = 24,
+          "News & Politics"=25, "How to & Style" = 26, "Education" = 27,
+          "Science & Technology" = 28, "Nonprofits & Activism" = 29
       )
     )
   ),

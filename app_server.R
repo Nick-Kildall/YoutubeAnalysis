@@ -101,6 +101,18 @@ server <- function(input, output) {
   
   ### Nick
   
+  #if (input$piechart == 1) {
+  #  categories_by_date <- youtube_trending %>%
+  #    group_by(categoryId) %>%
+  #    summarize(counts = n())
+  #} else if (input$piechart != 1) {
+  #  categories_by_date <- youtube_trending %>%
+  #    mutate(month = substr(publishedAt, 6, 7)) %>%
+  #    filter(month == input$piechart) %>%
+  #    group_by(month, categoryId) %>%
+  #    summarize(counts = n())
+  #}
+  
   #output$barchart <- renderPlot({
   #  get_daily_views_plot(youtube_trending)
   #})

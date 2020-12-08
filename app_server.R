@@ -5,13 +5,10 @@ library(plotly)
 library(RColorBrewer)
 
 source("scripts/piechart-graph.R")
-<<<<<<< HEAD
 source("scripts/daily_views_graph.R")
 source("scripts/boxplot-graph.R")
 source("scripts/summary_info_script.R")
 source("scripts/Grouped_by.R")
-=======
->>>>>>> e0f89876aac475ebb919f488104d76ef18280db8
 
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              encoding = "UTF-8",

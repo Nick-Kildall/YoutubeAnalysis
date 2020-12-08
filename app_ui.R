@@ -65,7 +65,6 @@ body <- dashboardBody(
   ### pages
   tabItems(
     tabItem(tabName = "Introduction",
-            h2("Dashboard tab content"),
             includeHTML("www/introduction.html")
     ),
     
@@ -76,7 +75,7 @@ body <- dashboardBody(
     ),
     
     tabItem(tabName = "Piechart",
-            h2("Trending Categories by Month from August 2020 to November 2020"),
+            includeHTML("www/piechart_header.html"),
             graph_two,
             includeHTML("www/piechart_msg.html")
     ),

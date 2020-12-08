@@ -176,11 +176,12 @@ server <- function(input, output) {
     category from our data, and the percentage of the whole rounded to two 
     decimal places that represents how frequent a particular category makes it 
     into the trending section. We created this chart to get an  idea of what 
-    videos make it onto YouTube's trending section more frequently than others.
+    types of videos make it onto YouTube's trending section more frequently than
+    others.
     
     From looking at the graph, it is clear to see that the majority of videos 
-    that make it into the trending section are **Music, Entertainment, and 
-    Sports**, with the combination of the three making up over 50% of the 
+    that make it into the trending section are Music, Entertainment, and 
+    Sports, with the combination of the three making up over 50% of the 
     fifteen unique categories that were found in our data. An interesting bit 
     of information that I found was that YouTube has more than just 15 unique
     categories, but the trending section seems to group several categories into 

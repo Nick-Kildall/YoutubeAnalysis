@@ -7,13 +7,15 @@ library("dplyr")
 library("shinythemes")
 library("shinydashboard")
 
+
+
 header <- dashboardHeader(title = "YouTube Trending Data Analysis")
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Introduction", tabName = "Introduction"),
     menuItem("Graph One", tabName = "Barchart"),
-    menuItem("Graph Two", tabName = "Piechart"),
+    menuItem("Trending by Categories", tabName = "Piechart"),
     menuItem("Graph Three", tabName = "Quang's page"),
     menuItem("Summary", tabName = "Summary")
   )
@@ -41,7 +43,7 @@ graph_one <- fluidRow(
 
 graph_two <- fluidRow(
   box(
-    plotlyOutput("piechart", height = 500)
+    plotlyOutput("piechart", height = 400)
   ),
   
   box(
@@ -86,6 +88,7 @@ body <- dashboardBody(
 
 ### Main UI Method
 ui <- dashboardPage(
+  skin = "purple",
   header,
   sidebar,
   body

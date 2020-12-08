@@ -69,6 +69,13 @@ server <- function(input, output) {
     get_daily_views_plot(youtube_trending)
   })
   
+
+  ### Quang
+  output$boxplot <- renderPlotly({})
+  
+  ### Isaac 
+  
+  ### General 
   output$nick_msg_one <- renderText(
     "This plot displays the average amount of views trending videos recieved 
     on a given day (Sunday to Saturday). We created this chart to see if there
@@ -116,8 +123,4 @@ server <- function(input, output) {
     We will answer this question to determine if there is a correlation between certain types of content and presence within the trending category."
     
   )
-
-  ### Quang
-  output$boxplot <- renderPlotly({})
-  
 }

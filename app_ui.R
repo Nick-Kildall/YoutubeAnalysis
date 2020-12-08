@@ -41,7 +41,7 @@ graph_two <- fluidRow(
       label = "Select a Month",
       choice = c("ALL", "August", "September", "October", "November"),
       selected = "ALL"
-      )
+    )
   )
 )
 

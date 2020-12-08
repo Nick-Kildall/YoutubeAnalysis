@@ -94,6 +94,6 @@ ui <- fluidPage(
   header,
   sidebar,
   body
-)
+  )
 )
 

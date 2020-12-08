@@ -88,10 +88,13 @@ body <- dashboardBody(
 )
 
 ### Main UI Method
-ui <- dashboardPage(
+ui <- fluidPage(
+  theme = "bootstrap.css",
+  dashboardPage(
   skin = "purple",
   header,
   sidebar,
   body
+)
 )
 

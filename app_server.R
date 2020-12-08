@@ -15,6 +15,8 @@ youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              stringsAsFactors = FALSE
 )
 
+
+
 server <- function(input, output) {
   
   ### Mitchell

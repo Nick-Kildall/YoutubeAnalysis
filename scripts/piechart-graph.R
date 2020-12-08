@@ -1,6 +1,7 @@
 library(dplyr)
 library(plotly)
 library(RColorBrewer)
+library(stringr)
 
 trending_categories_graph <- function(youtube_trending) {
 
@@ -56,3 +57,4 @@ trending_categories_graph <- function(youtube_trending) {
                                          )
   return(trending_categories_plotly)
 }
+

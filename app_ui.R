@@ -30,7 +30,15 @@ graph_one <- fluidRow(
 )
 
 graph_two <- fluidRow(
-  box(plotlyOutput("piechart", height = 300))
+  box(
+    plotlyOutput("piechart", height = 500)
+  ),
+  
+  box(
+    title = "Select the Month",
+    selectInput("month", "Month:", choice = c("ALL", "August", "September",
+                                              "October", "November"))
+  )
 )
 
 body <- dashboardBody(
@@ -48,7 +56,7 @@ body <- dashboardBody(
     ),
     
     tabItem(tabName = "Piechart",
-            h2("Trending Categories"),
+            h2("Trending Categories by Month from August 2020 to November 2020"),
             graph_two
     ),
     

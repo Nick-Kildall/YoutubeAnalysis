@@ -93,6 +93,7 @@ body <- dashboardBody(
 ### Main UI Method
 ui <- shinyUI(
     dashboardPage(
+      skin = "red",
       header,
       sidebar,
       body

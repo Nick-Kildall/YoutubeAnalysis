@@ -78,7 +78,7 @@ body <- dashboardBody(
     tabItem(tabName = "Piechart",
             h2("Trending Categories by Month from August 2020 to November 2020"),
             graph_two,
-            textOutput(outputId = "mitch_msg_one")
+            includeHTML("www/piechart_msg.html")
     ),
     
     tabItem(tabName = "Quang's page",

@@ -91,11 +91,11 @@ body <- dashboardBody(
 
 ### Main UI Method
 ui <- shinyUI(
-  dashboardPage(
-    header,
-    sidebar,
-    body
-  )
+    dashboardPage(
+      header,
+      sidebar,
+      body
+    )
 )
 
 

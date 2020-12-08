@@ -30,6 +30,9 @@ graph_one <- fluidRow(
 )
 
 graph_two <- fluidRow(
+  box(
+    plotlyOutput("piechart", height = 500)
+  ),
   
   box(
     title = "Select the Month",
@@ -39,9 +42,7 @@ graph_two <- fluidRow(
       choice = c("ALL", "August", "September", "October", "November"),
       selected = "ALL"
       )
-  ),
-  
-  plotlyOutput("piechart", height = 500)
+  )
 )
 
 body <- dashboardBody(

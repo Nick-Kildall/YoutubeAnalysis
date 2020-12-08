@@ -19,106 +19,48 @@ server <- function(input, output) {
   
   ### Mitchell
   
-  date <- youtube_trending %>%
-    mutate(month = substr(publishedAt, 6, 7)) %>%
-    group_by(month, categoryId) %>%
-    summarize(counts = n())
-  
-  date$month[date$month == "08"] <- "August"
-  date$month[date$month == "09"] <- "September"
-  date$month[date$month == "10"] <- "October"
-  date$month[date$month == "11"] <- "November"
-  
-  date$categoryId[date$categoryId == "1"] <- "Film & Animation"
-  date$categoryId[date$categoryId == "2"] <- "Autos & Vehicles"
-  date$categoryId[date$categoryId == "10"] <- "Music"
-  date$categoryId[date$categoryId == "15"] <- "Pets & Animals"
-  date$categoryId[date$categoryId == "17"] <- "Sports"
-  date$categoryId[date$categoryId == "19"] <- "Travel & Events"
-  date$categoryId[date$categoryId == "20"] <- "Gaming"
-  date$categoryId[date$categoryId == "22"] <- "People & Blogs"
-  date$categoryId[date$categoryId == "23"] <- "Comedy"
-  date$categoryId[date$categoryId == "24"] <- "Entertainment"
-  date$categoryId[date$categoryId == "25"] <- "News & Politics"
-  date$categoryId[date$categoryId == "26"] <- "How to & Style"
-  date$categoryId[date$categoryId == "27"] <- "Education"
-  date$categoryId[date$categoryId == "28"] <- "Science & Technology"
-  date$categoryId[date$categoryId == "29"] <- "Nonprofits & Activism"
-  
-  alldates <- youtube_trending %>%
-    group_by(categoryId) %>%
-    summarize(counts = n())
-  
-  alldates$categoryId <- c("Film & Animation", "Autos & Vehicles", "Music",
-                           "Pets & Animals", "Sports", "Travel & Events", "Gaming",
-                           "People & Blogs", "Comedy", "Entertainment",
-                           "News & Politics", "How to & Style", "Education",
-                           "Science & Technology", "Nonprofits & Activism")
-  
-  categories_by_date <- reactive({
+  show_categories_by_date <- reactive({
     if ("ALL" %in% input$piechart) {
-      categories_by_date <- alldates
+      categories_by_date <- youtube_trending %>%
+        group_by(categoryId) %>%
+        summarize(counts = n())
     } else if ("August" %in% input$piechart) {
-      categories_by_date <- date %>%
-        filter(month == "August")
+      categories_by_date <- youtube_trending %>%
+        mutate(month = substr(publishedAt, 6, 7)) %>%
+        filter(month == "08") %>%
+        group_by(month, categoryId) %>%
+        summarize(counts = n())
     } else if ("September" %in% input$piechart) {
-      categories_by_date <- date %>%
-        filter(month == "September")
+      categories_by_date <- youtube_trending %>%
+        mutate(month = substr(publishedAt, 6, 7)) %>%
+        filter(month == "09") %>%
+        group_by(month, categoryId) %>%
+        summarize(counts = n())
     } else if ("October" %in% input$piechart) {
-      categories_by_date <- date %>%
-        filter(month == "October")
+      categories_by_date <- youtube_trending %>%
+        mutate(month = substr(publishedAt, 6, 7)) %>%
+        filter(month == "10") %>%
+        group_by(month, categoryId) %>%
+        summarize(counts = n())
     } else if ("November" %in% input$piechart) {
-      categories_by_date <- date %>%
-        filter(month == "November")
+      categories_by_date <- youtube_trending %>%
+        mutate(month = substr(publishedAt, 6, 7)) %>%
+        filter(month == "11") %>%
+        group_by(month, categoryId) %>%
+        summarize(counts = n())
     }
     return(categories_by_date)
   })
-  
-  # Getting percentages rounded to two decimal places.
-  percentages <- reactive({
-    if ("ALL" %in% input$piechart) {
-      round(alldates$counts / sum(alldates$counts) * 100, 2)
-    } else {
-      round(categories_by_date$counts / sum(categories_by-date$counts) * 100, 2)
-    }
-  })
-  
-  # Computing labels
-  label <- reactive({
-    if ("ALL" %in% input$piechart) {
-      paste0(alldates$categoryId)
-    } else {
-      paste0(categories_by_date$categoryId)
-    }
-  })
-  
-  # Needed more than 9 colors, so had to concatenate palettes.
-  my_colors <- c(brewer.pal(name = "Paired", n = 8),
-                 brewer.pal(name = "Pastel2", n = 7))
-  
+
   output$piechart <- renderPlotly({
-    plot_ly(categories_by_date,
-            labels = ~label,
+    plot_ly(data = show_categories_by_date(),
+            labels = ~categoryId,
             values = ~counts,
-            type = "pie",
-            textposition = "inside",
-            textinfo = "label+percent",
-            insidetextfont = list(color = "black"),
-            hoverinfo = "text",
-            text = ~paste0("Category: ",
-                           categoryId,
-                           "\nNumber of videos: ",
-                           counts,
-                           "\nPercentage: ",
-                           percentages, "%"),
-            marker = list(colors = my_colors,
-                          line =
-                            list(color = "black",
-                                 width = 1)),
-            showlegend = FALSE,
-            title =
-              "Trending Categories by Percent"
-    )
+            type = "pie"
+    ) %>%
+      layout(title = "pie",
+             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   })
   
   ### Nick

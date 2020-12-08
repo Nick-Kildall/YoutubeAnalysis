@@ -20,8 +20,9 @@ sidebar <- dashboardSidebar(
 )
 
 graph_one <- fluidRow(
-  box(plotOutput("barchart", height = 300)),
-  
+  box(
+    plotOutput("barchart", height = 300)
+  ),
   box(
     title = "Controls",
     sliderInput("slider", "Number of observations:", 1, 100, 50)
@@ -36,12 +37,14 @@ body <- dashboardBody(
   ### pages
   tabItems(
     tabItem(tabName = "Introduction",
-            h2("Dashboard tab content")
+            h2("Dashboard tab content"),
+            textOutput(outputId = "intro_txt")
     ),
     
     tabItem(tabName = "Barchart",
             h2("Widgets tab content"),
-            graph_one
+            graph_one,
+            textOutput(outputId = "nick_msg_one")
     ),
     
     tabItem(tabName = "Piechart",
@@ -59,8 +62,10 @@ body <- dashboardBody(
   )
 )
 
+### Main UI Method
 ui <- dashboardPage(
   header,
   sidebar,
   body
 )
+

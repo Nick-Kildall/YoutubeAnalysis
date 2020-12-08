@@ -165,6 +165,28 @@ server <- function(input, output) {
     would likely receive the highest viewership."
   )
   
+  output$mitch_msg_one <- renderText(
+    "This pie chart displays the distribution of each video category found
+    within the trending section as a percentage. Each section of the pie 
+    represents a proportion to the total number of videos within the trending 
+    section during the 4 month period we pulled our data from.
+    
+    When hovering over a specific section of the graph you are provided with 
+    the category name, the number of videos that  fall under that specific 
+    category from our data, and the percentage of the whole rounded to two 
+    decimal places that represents how frequent a particular category makes it 
+    into the trending section. We created this chart to get an  idea of what 
+    videos make it onto YouTube's trending section more frequently than others.
+    
+    From looking at the graph, it is clear to see that the majority of videos 
+    that make it into the trending section are **Music, Entertainment, and 
+    Sports**, with the combination of the three making up over 50% of the 
+    fifteen unique categories that were found in our data. An interesting bit 
+    of information that I found was that YouTube has more than just 15 unique
+    categories, but the trending section seems to group several categories into 
+    a main category to be used in their trending section. "
+  )
+  
   output$intro_txt <- renderText(
     "Why are you interested in this domain?
     We are frequent consumers of YouTube and we are curious as to what makes

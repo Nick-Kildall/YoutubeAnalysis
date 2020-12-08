@@ -9,7 +9,8 @@ library("shinydashboard")
 
 
 
-header <- dashboardHeader(title = "YouTube Trending Data Analysis")
+header <- dashboardHeader(title = "YouTube Trending Data Analysis",
+                          titleWidth = 350)
 
 sidebar <- dashboardSidebar(
   sidebarMenu(

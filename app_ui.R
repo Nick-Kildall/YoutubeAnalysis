@@ -91,7 +91,6 @@ body <- dashboardBody(
 ui <- fluidPage(
   theme = "bootstrap.css",
   dashboardPage(
-  skin = "purple",
   header,
   sidebar,
   body

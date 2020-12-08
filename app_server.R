@@ -63,9 +63,21 @@ server <- function(input, output) {
     plot_ly(data = show_categories_by_date(),
             labels = ~categoryId,
             values = ~counts,
-            type = "pie"
+            type = "pie",
+            textposition = "inside",
+            textinfo = "label+percent",
+            insidetextfont = list(color = "black"),
+            hoverinfo = "text",
+            text = ~paste0("Category: ",
+                           categoryId,
+                           "\nNumber of videos: ",
+                           counts,
+                           "\nPercentage: ",
+                           round(counts / sum(counts) * 100, 2), "%"),
+            marker = list(line = list(color = "black", width = 1)),
+            showlegend = FALSE
     ) %>%
-      layout(title = "pie",
+      layout(title = "Trending Categories",
              xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
              yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   })

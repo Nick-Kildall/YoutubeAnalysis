@@ -165,35 +165,4 @@ server <- function(input, output) {
     would likely receive the highest viewership."
   )
   
-  output$intro_txt <- renderText(
-    "Why are you interested in this domain?
-    We are frequent consumers of YouTube and we are curious as to what makes
-    a YouTube video trending. The trending section can only show a limited
-    number of videos each day and captures what is currently going on in the
-    world with videos that appeal to a wide range of viewers. Through this
-    project, we would like to explore the logistics behind why these videos
-    end up in the trending category. 
-    
-    What data-driven questions do you hope to answer about this domain?
-    - When were trending videos posted?  
-    
-    Using the time of day and days of the week that trending videos are posted, we can try to answer if when videos get posted have an effect on why they become trending.
-
-    - What are the most common characteristics of trending videos?  
-    - What types of titles are common in trending videos?
-    - Do they ask questions, are they in caps, or do they use symbols?
-    - How long are they?
-    - What is their like-to-dislike ratio?
-    - What is their overall engagement?  
-    - How many subscribers do the channels who post trending videos have on average?
-    - How many views do the videos within the trending section have on average?
-    - Does recency of the video have an impact on entering the trending section?  
-
-    Analyzing these statistics of trending videos will help us get a sense for the logistics behind what makes a video become trending.
-
-    - What video tags make it to the trending section most frequently?
-
-    We will answer this question to determine if there is a correlation between certain types of content and presence within the trending category."
-    
-  )
 }

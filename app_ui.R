@@ -66,7 +66,7 @@ body <- dashboardBody(
   tabItems(
     tabItem(tabName = "Introduction",
             h2("Dashboard tab content"),
-            textOutput(outputId = "intro_txt")
+            includeHTML("www/introduction.html")
     ),
     
     tabItem(tabName = "Barchart",

@@ -9,8 +9,10 @@ library("shinydashboard")
 
 
 
-header <- dashboardHeader(title = "YouTube Trending Data Analysis",
-                          titleWidth = 350)
+header <- dashboardHeader(titleWidth = '100%',
+                          title = "YouTube Trending Data Analysis")
+                          
+                          
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
@@ -88,12 +90,12 @@ body <- dashboardBody(
 )
 
 ### Main UI Method
-ui <- fluidPage(
-  theme = "bootstrap.css",
+ui <- shinyUI(
   dashboardPage(
-  header,
-  sidebar,
-  body
+    header,
+    sidebar,
+    body
   )
 )
+
 

@@ -219,4 +219,8 @@ server <- function(input, output) {
     We will answer this question to determine if there is a correlation between certain types of content and presence within the trending category."
     
   )
+  
+  output$picture <- renderImage({
+    return(list(src = "/www/img/youtubetrending.jpg", contentType = "image/jpg",alt = "youtubetrending"))
+  }, deleteFile = FALSE)
 }

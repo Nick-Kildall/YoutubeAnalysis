@@ -45,9 +45,8 @@ graph_two <- fluidRow(
   ),
   
   box(
-    title = "Select the Month",
     selectInput(
-      inputId = "month",
+      inputId = "piechart",
       label = "Select a Month",
       choice = c("ALL", "August", "September", "October", "November"),
       selected = "ALL"

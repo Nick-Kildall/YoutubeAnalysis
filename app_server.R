@@ -10,6 +10,7 @@ source("scripts/boxplot-graph.R")
 source("scripts/summary_info_script.R")
 source("scripts/Grouped_by.R")
 
+### Reading in our dataset.
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              encoding = "UTF-8",
                              stringsAsFactors = FALSE
@@ -21,6 +22,7 @@ youtube_days <- youtube_trending %>% mutate(day = c(
   "Friday", "Saturday"
 )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1])
 
+### Changing categoryId into recognizable categories.
 youtube_trending$categoryId[youtube_trending$categoryId == "1"] <- "Film & Animation"
 youtube_trending$categoryId[youtube_trending$categoryId == "2"] <- "Auto & Vehicles"
 youtube_trending$categoryId[youtube_trending$categoryId == "10"] <- "Music"
@@ -42,6 +44,8 @@ server <- function(input, output) {
   
   ### Mitchell
   
+  ### Creating a reactive df that filters for data based off the user's input
+  ### The options are either viewing the entire df or filtering by month.
   show_categories_by_date <- reactive({
     if ("ALL" %in% input$piechart) {
       categories_by_date <- youtube_trending %>%
@@ -76,6 +80,7 @@ server <- function(input, output) {
     return(categories_by_date)
   })
 
+  ### Creating piechart visual.
   output$piechart <- renderPlotly({
     plot_ly(data = show_categories_by_date(),
             labels = ~categoryId,

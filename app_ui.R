@@ -7,14 +7,13 @@ library("dplyr")
 library("shinythemes")
 library("shinydashboard")
 
-
-
+### Header
 header <- dashboardHeader(titleWidth = '100%',
                           title = "YouTube Trending Data Analysis in the United States"
 )
                           
                           
-
+### Sidebar
 sidebar <- dashboardSidebar(width = 275,
   sidebarMenu(
     menuItem("Introduction", tabName = "Introduction"),
@@ -24,7 +23,7 @@ sidebar <- dashboardSidebar(width = 275,
     menuItem("Summary", tabName = "Summary")
   )
 )
-
+### Bar Chart
 graph_one <- fluidRow(
   box(
     plotOutput("barchart", height = 400)
@@ -44,7 +43,9 @@ graph_one <- fluidRow(
   ), 
   box(textOutput("instructions"))
 )
+### End Bar Chart
 
+### Pie Chart
 graph_two <- fluidRow(
   box(
     plotlyOutput("piechart", height = 400)
@@ -58,7 +59,9 @@ graph_two <- fluidRow(
     )
   )
 )
+### End Pie Chart
 
+### Box Plot
 graph_three <- fluidRow(
   box(
     plotlyOutput("boxplot", height = 650)
@@ -74,14 +77,17 @@ graph_three <- fluidRow(
   )
 )
 
+### End Boxplot
+
 body <- dashboardBody(
   
-  ### pages
+  ### Pages
   tabItems(
     tabItem(tabName = "Introduction",
             includeHTML("www/introduction.html")
     ),
-    
+    ### Bar Chart page displaying average views for each category by day of
+    ### the week.
     tabItem(tabName = "Barchart",
             h2("Widgets tab content"),
             graph_one,
@@ -89,13 +95,13 @@ body <- dashboardBody(
             plotOutput("all_cat_barchart", height = 400, width = 700),
             includeHTML("www/graph_one2.html")
     ),
-    
+    ### Pie Chart page displaying trending categories by frequency (percentage)
     tabItem(tabName = "Piechart",
             includeHTML("www/piechart_header.html"),
             graph_two,
             includeHTML("www/piechart_msg.html")
     ),
-    
+    ### Box Plot page displaying how long it takes for a video to go trending.
     tabItem(tabName = "Boxplot",
             h2("Publish Date vs Trend Date"),
             graph_three,

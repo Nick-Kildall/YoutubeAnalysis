@@ -8,8 +8,9 @@ library("shinythemes")
 library("shinydashboard")
 
 ### Header
-header <- dashboardHeader(titleWidth = '100%',
-                          title = "YouTube Trending Data Analysis in the United States"
+header <- dashboardHeader(titleWidth = "100%",
+                          title = "YouTube Trending Data Analysis in 
+                          the United States"
 )
 
 ### Sidebar
@@ -39,7 +40,7 @@ graph_one <- fluidRow(
           "Science & Technology" = 28, "Nonprofits & Activism" = 29
       )
     )
-  ), 
+  ),
   box(textOutput("instructions"))
 )
 ### End Bar Chart
@@ -65,7 +66,7 @@ graph_three <- fluidRow(
   box(
     plotlyOutput("boxplot", height = 650)
   ),
-  
+
   box(
     selectInput(
       inputId = "boxplot",
@@ -79,7 +80,7 @@ graph_three <- fluidRow(
 ### End Boxplot
 
 body <- dashboardBody(
-  
+
   ### Pages
   tabItems(
     tabItem(tabName = "Introduction",
@@ -106,7 +107,7 @@ body <- dashboardBody(
             graph_three,
             includeHTML("www/boxplot.html")
     ),
-    
+
     tabItem(tabName = "Summary",
             h2("Blah")
     )
@@ -122,5 +123,3 @@ ui <- shinyUI(
       body
     )
 )
-
-

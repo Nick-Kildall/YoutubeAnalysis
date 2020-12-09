@@ -110,7 +110,7 @@ body <- dashboardBody(
     ),
 
     tabItem(tabName = "Summary",
-            h2("Blah")
+          includeHTML("www/Summary.html")
     )
   )
 )

@@ -7,15 +7,14 @@ library("dplyr")
 library("shinythemes")
 library("shinydashboard")
 
-
-
-header <- dashboardHeader(titleWidth = '100%',
-                          title = "YouTube Trending Data Analysis in the United States"
+### Header
+header <- dashboardHeader(titleWidth = "100%",
+                          title = "YouTube Trending Data Analysis in 
+                          the United States"
 )
-                          
-                          
 
-sidebar <- dashboardSidebar(width = 265,
+### Sidebar
+sidebar <- dashboardSidebar(width = 275,
   sidebarMenu(
     menuItem("Introduction", tabName = "Introduction"),
     menuItem("Average Views by Category", tabName = "Barchart"),
@@ -24,7 +23,7 @@ sidebar <- dashboardSidebar(width = 265,
     menuItem("Summary", tabName = "Summary")
   )
 )
-
+### Bar Chart
 graph_one <- fluidRow(
   box(
     plotOutput("barchart", height = 400)
@@ -39,12 +38,15 @@ graph_one <- fluidRow(
           "Gaming" = 20, "People & Blogs" = 22, "Comedy" = 23, "Entertainment" = 24,
           "News & Politics"=25, "How to & Style" = 26, "Education" = 27,
           "Science & Technology" = 28, "Nonprofits & Activism" = 29
-      )
+      ),
+      selected = "Film & Animation"
     )
-  ), 
+  ),
   box(textOutput("instructions"))
 )
+### End Bar Chart
 
+### Pie Chart
 graph_two <- fluidRow(
   box(
     plotlyOutput("piechart", height = 400)
@@ -58,12 +60,14 @@ graph_two <- fluidRow(
     )
   )
 )
+### End Pie Chart
 
+### Box Plot
 graph_three <- fluidRow(
   box(
     plotlyOutput("boxplot", height = 650)
   ),
-  
+
   box(
     selectInput(
       inputId = "boxplot",
@@ -74,34 +78,37 @@ graph_three <- fluidRow(
   )
 )
 
+### End Boxplot
+
 body <- dashboardBody(
-  
-  ### pages
+
+  ### Pages
   tabItems(
     tabItem(tabName = "Introduction",
             includeHTML("www/introduction.html")
     ),
-    
+    ### Bar Chart page displaying average views for each category by day of
+    ### the week.
     tabItem(tabName = "Barchart",
-            h2("Widgets tab content"),
+            h2("Average Views by Category"),
             graph_one,
             includeHTML("www/graph_one.html"),
             plotOutput("all_cat_barchart", height = 400, width = 700),
             includeHTML("www/graph_one2.html")
     ),
-    
+    ### Pie Chart page displaying trending categories by frequency (percentage)
     tabItem(tabName = "Piechart",
             includeHTML("www/piechart_header.html"),
             graph_two,
             includeHTML("www/piechart_msg.html")
     ),
-    
+    ### Box Plot page displaying how long it takes for a video to go trending.
     tabItem(tabName = "Boxplot",
-            h2("Publish Date vs Trend Date"),
+            includeHTML("www/boxplot_header.html"),
             graph_three,
             includeHTML("www/boxplot.html")
     ),
-    
+
     tabItem(tabName = "Summary",
             h2("Blah")
     )
@@ -117,5 +124,3 @@ ui <- shinyUI(
       body
     )
 )
-
-

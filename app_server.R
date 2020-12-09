@@ -4,12 +4,12 @@ library(stringr)
 library(plotly)
 library(RColorBrewer)
 
-source("scripts/piechart-graph.R")
 source("scripts/daily_views_graph.R")
 source("scripts/boxplot-graph.R")
 source("scripts/summary_info_script.R")
 source("scripts/Grouped_by.R")
 
+### Reading in our dataset.
 youtube_trending <- read.csv("data/US_youtube_trending_data.csv",
                              encoding = "UTF-8",
                              stringsAsFactors = FALSE
@@ -21,61 +21,71 @@ youtube_days <- youtube_trending %>% mutate(day = c(
   "Friday", "Saturday"
 )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1])
 
-youtube_trending$categoryId[youtube_trending$categoryId == "1"] <- "Film & Animation"
-youtube_trending$categoryId[youtube_trending$categoryId == "2"] <- "Auto & Vehicles"
-youtube_trending$categoryId[youtube_trending$categoryId == "10"] <- "Music"
-youtube_trending$categoryId[youtube_trending$categoryId == "15"] <- "Pets & Animals"
-youtube_trending$categoryId[youtube_trending$categoryId == "17"] <- "Sports"
-youtube_trending$categoryId[youtube_trending$categoryId == "19"] <- "Travel & Events"
-youtube_trending$categoryId[youtube_trending$categoryId == "20"] <- "Gaming"
-youtube_trending$categoryId[youtube_trending$categoryId == "22"] <- "People & Blogs"
-youtube_trending$categoryId[youtube_trending$categoryId == "23"] <- "Comedy"
-youtube_trending$categoryId[youtube_trending$categoryId == "24"] <- "Entertainment"
-youtube_trending$categoryId[youtube_trending$categoryId == "25"] <- "News & Politics"
-youtube_trending$categoryId[youtube_trending$categoryId == "26"] <- "How to & Style"
-youtube_trending$categoryId[youtube_trending$categoryId == "27"] <- "Education"
-youtube_trending$categoryId[youtube_trending$categoryId == "28"] <- "Science & Technology"
-youtube_trending$categoryId[youtube_trending$categoryId == "29"] <- "Nonprofits & Activism"
+### Changing categoryId into recognizable categories.
+youtube_trending$categoryId[youtube_trending$categoryId == "1"] <- 
+  "Film & Animation"
+youtube_trending$categoryId[youtube_trending$categoryId == "2"] <- 
+  "Auto & Vehicles"
+youtube_trending$categoryId[youtube_trending$categoryId == "10"] <- 
+  "Music"
+youtube_trending$categoryId[youtube_trending$categoryId == "15"] <- 
+  "Pets & Animals"
+youtube_trending$categoryId[youtube_trending$categoryId == "17"] <- 
+  "Sports"
+youtube_trending$categoryId[youtube_trending$categoryId == "19"] <- 
+  "Travel & Events"
+youtube_trending$categoryId[youtube_trending$categoryId == "20"] <- 
+  "Gaming"
+youtube_trending$categoryId[youtube_trending$categoryId == "22"] <- 
+  "People & Blogs"
+youtube_trending$categoryId[youtube_trending$categoryId == "23"] <- 
+  "Comedy"
+youtube_trending$categoryId[youtube_trending$categoryId == "24"] <- 
+  "Entertainment"
+youtube_trending$categoryId[youtube_trending$categoryId == "25"] <- 
+  "News & Politics"
+youtube_trending$categoryId[youtube_trending$categoryId == "26"] <- 
+  "How to & Style"
+youtube_trending$categoryId[youtube_trending$categoryId == "27"] <- 
+  "Education"
+youtube_trending$categoryId[youtube_trending$categoryId == "28"] <- 
+  "Science & Technology"
+youtube_trending$categoryId[youtube_trending$categoryId == "29"] <- 
+  "Nonprofits & Activism"
 
 ### Main Server Function
 server <- function(input, output) {
-  
+
   ### Mitchell
-  
+
+  ### Creating a reactive df that filters for data based off the user's input
+  ### The options are either viewing the entire df or filtering by month.
   show_categories_by_date <- reactive({
-    if ("ALL" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
+
+    trending <- youtube_trending %>%
+      select(categoryId, publishedAt) %>%
+      mutate(month = substr(publishedAt, 6, 7))
+
+    trending$month[trending$month == "08"] <- "August"
+    trending$month[trending$month == "09"] <- "September"
+    trending$month[trending$month == "10"] <- "October"
+    trending$month[trending$month == "11"] <- "November"
+
+    categories_by_date <- if ("ALL" %in% input$piechart) {
+      trending %>%
         group_by(categoryId) %>%
         summarize(counts = n())
-    } else if ("August" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "08") %>%
-        group_by(month, categoryId) %>%
-        summarize(counts = n())
-    } else if ("September" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "09") %>%
-        group_by(month, categoryId) %>%
-        summarize(counts = n())
-    } else if ("October" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "10") %>%
-        group_by(month, categoryId) %>%
-        summarize(counts = n())
-    } else if ("November" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "11") %>%
-        group_by(month, categoryId) %>%
+    } else {
+      trending %>%
+        filter(month == input$piechart) %>%
+        group_by(categoryId) %>%
         summarize(counts = n())
     }
-    
+
     return(categories_by_date)
   })
 
+  ### Creating piechart visual.
   output$piechart <- renderPlotly({
     plot_ly(data = show_categories_by_date(),
             labels = ~categoryId,
@@ -95,38 +105,23 @@ server <- function(input, output) {
             showlegend = FALSE
     ) %>%
       layout(title = "Trending Categories",
-             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+             xaxis = list(showgrid = FALSE, zeroline = FALSE,
+                          showticklabels = FALSE),
+             yaxis = list(showgrid = FALSE, zeroline = FALSE,
+                          showticklabels = FALSE))
   })
-  
+
   ### Nick
-  
-  #if (input$piechart == 1) {
-  #  categories_by_date <- youtube_trending %>%
-  #    group_by(categoryId) %>%
-  #    summarize(counts = n())
-  #} else if (input$piechart != 1) {
-  #  categories_by_date <- youtube_trending %>%
-  #    mutate(month = substr(publishedAt, 6, 7)) %>%
-  #    filter(month == input$piechart) %>%
-  #    group_by(month, categoryId) %>%
-  #    summarize(counts = n())
-  #}
-  
-  #output$barchart <- renderPlot({
-  #  get_daily_views_plot(youtube_trending)
-  #})
-  
-  ### shows output of user input
-  output$nick_msg_two <- renderText(paste0("this is the output of the button: ", input$cat_input))
-  
+
+  ### Filters data by the user's specified category and finds the average
+  ### amount of videos that occured on that day.
   youtube_filtered <- reactive({
-    
+
     result <- youtube_days %>%
       filter(categoryId == input$cat_input) %>%
       group_by(day) %>%
       summarise(sum_view = sum(view_count))
-      
+
     result$day <- factor(
       result$day,
         levels =
@@ -136,10 +131,11 @@ server <- function(input, output) {
             "Saturday"
         )
     )
-    
+
     return(result)
   })
-  
+
+  ### Creates a barpot that changes based on the users prefered category
   output$barchart <- renderPlot({
     ggplot(
       data = youtube_filtered(),
@@ -154,11 +150,14 @@ server <- function(input, output) {
     ggtitle("Average Amount of Views by Day of the Week") +
     theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
   })
-  
+
+  ### Calls function in the script file.
+  ### Renders a plot that shows average views per day with out
+  ### regard for category.
   output$all_cat_barchart <- renderPlot(get_daily_views_plot(youtube_trending))
-  
+
   ### Quang
-  
+
   time_until_trending <- reactive({
     df <- youtube_trending %>%
       select(title, categoryId, publishedAt, trending_date) %>%
@@ -178,18 +177,18 @@ server <- function(input, output) {
           0
         )
       )
-    
-    result <- if("ALL" %in% input$boxplot) {
+
+    result <- if ("ALL" %in% input$boxplot) {
       df
     } else {
       df %>%
         filter(publishMonth == input$boxplot) %>%
         group_by(publishMonth, categoryId)
     }
-    
+
     return(result)
   })
-  
+
   output$boxplot <- renderPlotly({
     plot_ly(data = time_until_trending(),
             x = ~categoryId,
@@ -200,15 +199,14 @@ server <- function(input, output) {
              xaxis = list(title = "Category ID", tickangle = -90),
              yaxis = list(title = "Days Until Trending", hoverformat = ".2f"))
   })
-  
-  ### Isaac 
-  
-  ### General 
-  
+
+  ### Isaac
+
+  ### General
+
   output$instructions <- renderText("This plot displays the average amount of views
     trending videos recieved on a given day (Sunday to Saturday) for whatever
-    YouTube category the userwould like to specify. Use the widget above to 
+    YouTube category the user would like to specify. Use the widget above to 
     select the category you would like to see.")
 
-  
 }

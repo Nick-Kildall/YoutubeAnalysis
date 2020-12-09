@@ -62,6 +62,15 @@ graph_two <- fluidRow(
 graph_three <- fluidRow(
   box(
     plotlyOutput("boxplot", height = 650)
+  ),
+  
+  box(
+    selectInput(
+      inputId = "boxplot",
+      label = "Select a Month",
+      choice = c("ALL", "August", "September", "October", "November"),
+      selected = "ALL"
+    )
   )
 )
 
@@ -89,7 +98,8 @@ body <- dashboardBody(
     
     tabItem(tabName = "Boxplot",
             h2("Publish Date vs Trend Date"),
-            graph_three
+            graph_three,
+            includeHTML("www/boxplot.html")
     ),
     
     tabItem(tabName = "Summary",

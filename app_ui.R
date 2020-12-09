@@ -103,7 +103,7 @@ body <- dashboardBody(
     ),
     ### Box Plot page displaying how long it takes for a video to go trending.
     tabItem(tabName = "Boxplot",
-            h2("Publish Date vs Trend Date"),
+            includeHTML("www/boxplot_header.html"),
             graph_three,
             includeHTML("www/boxplot.html")
     ),

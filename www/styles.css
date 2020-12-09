@@ -1,6 +1,6 @@
 /* styles.css */  
   
-  h2 {
+    h2 {
       color: black;
       font-family:Arial;
       font-size: 24pt;
@@ -17,8 +17,12 @@
       color: black;
       font-family: Arial;
       font-size: 14pt;
+<<<<<<< HEAD
       line-height: 1.6;
 
+=======
+      line-height: 1.4;
+>>>>>>> c3e241c389de0c86acb3adb0f19147cfec704fc6
     }
     
     ul {

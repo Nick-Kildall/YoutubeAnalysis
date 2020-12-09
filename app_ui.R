@@ -90,7 +90,7 @@ body <- dashboardBody(
     ### Bar Chart page displaying average views for each category by day of
     ### the week.
     tabItem(tabName = "Barchart",
-            h2("Average Views by Category"),
+            includeHTML("www/barchart_header.html"),
             graph_one,
             includeHTML("www/graph_one.html"),
             plotOutput("all_cat_barchart", height = 400, width = 700),

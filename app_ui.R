@@ -10,7 +10,7 @@ library("shinydashboard")
 
 
 header <- dashboardHeader(titleWidth = '100%',
-                          title = "YouTube Trending Data Analysis"
+                          title = "YouTube Trending Data Analysis in the United States"
 )
                           
                           

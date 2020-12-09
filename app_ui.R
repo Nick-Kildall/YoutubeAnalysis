@@ -15,7 +15,7 @@ header <- dashboardHeader(titleWidth = '100%',
                           
                           
 
-sidebar <- dashboardSidebar(width = 265,
+sidebar <- dashboardSidebar(width = 275,
   sidebarMenu(
     menuItem("Introduction", tabName = "Introduction"),
     menuItem("Average Views by Category", tabName = "Barchart"),

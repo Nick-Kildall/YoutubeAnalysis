@@ -47,33 +47,24 @@ server <- function(input, output) {
   ### Creating a reactive df that filters for data based off the user's input
   ### The options are either viewing the entire df or filtering by month.
   show_categories_by_date <- reactive({
-    if ("ALL" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
+    
+    trending <- youtube_trending %>%
+      select(categoryId, publishedAt) %>%
+      mutate(month = substr(publishedAt, 6, 7))
+    
+    trending$month[trending$month == "08"] <- "August"
+    trending$month[trending$month == "09"] <- "September"
+    trending$month[trending$month == "10"] <- "October"
+    trending$month[trending$month == "11"] <- "November"
+      
+    categories_by_date <- if ("ALL" %in% input$piechart) {
+      trending %>%
         group_by(categoryId) %>%
         summarize(counts = n())
-    } else if ("August" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "08") %>%
-        group_by(month, categoryId) %>%
-        summarize(counts = n())
-    } else if ("September" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "09") %>%
-        group_by(month, categoryId) %>%
-        summarize(counts = n())
-    } else if ("October" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "10") %>%
-        group_by(month, categoryId) %>%
-        summarize(counts = n())
-    } else if ("November" %in% input$piechart) {
-      categories_by_date <- youtube_trending %>%
-        mutate(month = substr(publishedAt, 6, 7)) %>%
-        filter(month == "11") %>%
-        group_by(month, categoryId) %>%
+    } else {
+      trending %>%
+        filter(month == input$piechart) %>%
+        group_by(categoryId) %>%
         summarize(counts = n())
     }
     
@@ -100,23 +91,13 @@ server <- function(input, output) {
             showlegend = FALSE
     ) %>%
       layout(title = "Trending Categories",
-             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+             xaxis = list(showgrid = FALSE, zeroline = FALSE, 
+                          showticklabels = FALSE),
+             yaxis = list(showgrid = FALSE, zeroline = FALSE, 
+                          showticklabels = FALSE))
   })
   
   ### Nick
-  
-  #if (input$piechart == 1) {
-  #  categories_by_date <- youtube_trending %>%
-  #    group_by(categoryId) %>%
-  #    summarize(counts = n())
-  #} else if (input$piechart != 1) {
-  #  categories_by_date <- youtube_trending %>%
-  #    mutate(month = substr(publishedAt, 6, 7)) %>%
-  #    filter(month == input$piechart) %>%
-  #    group_by(month, categoryId) %>%
-  #    summarize(counts = n())
-  #}
   
   #output$barchart <- renderPlot({
   #  get_daily_views_plot(youtube_trending)

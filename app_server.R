@@ -99,13 +99,8 @@ server <- function(input, output) {
   
   ### Nick
   
-  #output$barchart <- renderPlot({
-  #  get_daily_views_plot(youtube_trending)
-  #})
-  
-  ### shows output of user input
-  output$nick_msg_two <- renderText(paste0("this is the output of the button: ", input$cat_input))
-  
+  ### Filters data by the user's specified category and finds the average
+  ### amount of videos that occured on that day.
   youtube_filtered <- reactive({
     
     result <- youtube_days %>%
@@ -126,6 +121,7 @@ server <- function(input, output) {
     return(result)
   })
   
+  ### Creates a barpot that changes based on the users prefered category
   output$barchart <- renderPlot({
     ggplot(
       data = youtube_filtered(),
@@ -141,6 +137,9 @@ server <- function(input, output) {
     theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
   })
   
+  ### Calls function in the script file. 
+  ### Renders a plot that shows average views per day with out
+  ### regard for category.
   output$all_cat_barchart <- renderPlot(get_daily_views_plot(youtube_trending))
   
   ### Quang

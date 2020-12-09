@@ -22,21 +22,36 @@ youtube_days <- youtube_trending %>% mutate(day = c(
 )[as.POSIXlt(substr(publishedAt, 1, 10))$wday + 1])
 
 ### Changing categoryId into recognizable categories.
-youtube_trending$categoryId[youtube_trending$categoryId == "1"] <- "Film & Animation"
-youtube_trending$categoryId[youtube_trending$categoryId == "2"] <- "Auto & Vehicles"
-youtube_trending$categoryId[youtube_trending$categoryId == "10"] <- "Music"
-youtube_trending$categoryId[youtube_trending$categoryId == "15"] <- "Pets & Animals"
-youtube_trending$categoryId[youtube_trending$categoryId == "17"] <- "Sports"
-youtube_trending$categoryId[youtube_trending$categoryId == "19"] <- "Travel & Events"
-youtube_trending$categoryId[youtube_trending$categoryId == "20"] <- "Gaming"
-youtube_trending$categoryId[youtube_trending$categoryId == "22"] <- "People & Blogs"
-youtube_trending$categoryId[youtube_trending$categoryId == "23"] <- "Comedy"
-youtube_trending$categoryId[youtube_trending$categoryId == "24"] <- "Entertainment"
-youtube_trending$categoryId[youtube_trending$categoryId == "25"] <- "News & Politics"
-youtube_trending$categoryId[youtube_trending$categoryId == "26"] <- "How to & Style"
-youtube_trending$categoryId[youtube_trending$categoryId == "27"] <- "Education"
-youtube_trending$categoryId[youtube_trending$categoryId == "28"] <- "Science & Technology"
-youtube_trending$categoryId[youtube_trending$categoryId == "29"] <- "Nonprofits & Activism"
+youtube_trending$categoryId[youtube_trending$categoryId == "1"] <- 
+  "Film & Animation"
+youtube_trending$categoryId[youtube_trending$categoryId == "2"] <- 
+  "Auto & Vehicles"
+youtube_trending$categoryId[youtube_trending$categoryId == "10"] <- 
+  "Music"
+youtube_trending$categoryId[youtube_trending$categoryId == "15"] <- 
+  "Pets & Animals"
+youtube_trending$categoryId[youtube_trending$categoryId == "17"] <- 
+  "Sports"
+youtube_trending$categoryId[youtube_trending$categoryId == "19"] <- 
+  "Travel & Events"
+youtube_trending$categoryId[youtube_trending$categoryId == "20"] <- 
+  "Gaming"
+youtube_trending$categoryId[youtube_trending$categoryId == "22"] <- 
+  "People & Blogs"
+youtube_trending$categoryId[youtube_trending$categoryId == "23"] <- 
+  "Comedy"
+youtube_trending$categoryId[youtube_trending$categoryId == "24"] <- 
+  "Entertainment"
+youtube_trending$categoryId[youtube_trending$categoryId == "25"] <- 
+  "News & Politics"
+youtube_trending$categoryId[youtube_trending$categoryId == "26"] <- 
+  "How to & Style"
+youtube_trending$categoryId[youtube_trending$categoryId == "27"] <- 
+  "Education"
+youtube_trending$categoryId[youtube_trending$categoryId == "28"] <- 
+  "Science & Technology"
+youtube_trending$categoryId[youtube_trending$categoryId == "29"] <- 
+  "Nonprofits & Activism"
 
 ### Main Server Function
 server <- function(input, output) {

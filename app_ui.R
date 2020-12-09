@@ -8,11 +8,11 @@ library("shinythemes")
 library("shinydashboard")
 
 ### Header
-header <- dashboardHeader(titleWidth = '100%',
-                          title = "YouTube Trending Data Analysis in the United States"
+header <- dashboardHeader(titleWidth = "100%",
+                          title = "YouTube Trending Data Analysis in 
+                          the United States"
 )
-                          
-                          
+
 ### Sidebar
 sidebar <- dashboardSidebar(width = 275,
   sidebarMenu(
@@ -41,7 +41,7 @@ graph_one <- fluidRow(
       ),
       selected = "Film & Animation"
     )
-  ), 
+  ),
   box(textOutput("instructions"))
 )
 ### End Bar Chart
@@ -67,7 +67,7 @@ graph_three <- fluidRow(
   box(
     plotlyOutput("boxplot", height = 650)
   ),
-  
+
   box(
     selectInput(
       inputId = "boxplot",
@@ -81,7 +81,7 @@ graph_three <- fluidRow(
 ### End Boxplot
 
 body <- dashboardBody(
-  
+
   ### Pages
   tabItems(
     tabItem(tabName = "Introduction",
@@ -104,11 +104,11 @@ body <- dashboardBody(
     ),
     ### Box Plot page displaying how long it takes for a video to go trending.
     tabItem(tabName = "Boxplot",
-            h2("Publish Date vs Trend Date"),
+            includeHTML("www/boxplot_header.html"),
             graph_three,
             includeHTML("www/boxplot.html")
     ),
-    
+
     tabItem(tabName = "Summary",
             h2("Blah")
     )
@@ -124,5 +124,3 @@ ui <- shinyUI(
       body
     )
 )
-
-

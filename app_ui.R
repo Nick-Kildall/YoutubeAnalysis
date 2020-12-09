@@ -15,10 +15,10 @@ header <- dashboardHeader(titleWidth = '100%',
                           
                           
 
-sidebar <- dashboardSidebar(
+sidebar <- dashboardSidebar(width = 265,
   sidebarMenu(
     menuItem("Introduction", tabName = "Introduction"),
-    menuItem("Graph One", tabName = "Barchart"),
+    menuItem("Average Views by Category", tabName = "Barchart"),
     menuItem("Trending by Categories", tabName = "Piechart"),
     menuItem("Graph Three", tabName = "Quang's page"),
     menuItem("Summary", tabName = "Summary")
@@ -27,7 +27,7 @@ sidebar <- dashboardSidebar(
 
 graph_one <- fluidRow(
   box(
-    plotOutput("barchart", height = 300)
+    plotOutput("barchart", height = 400)
   ),
   box(
     title = "Category",
@@ -41,8 +41,7 @@ graph_one <- fluidRow(
           "Science & Technology" = 28, "Nonprofits & Activism" = 29
       )
     )
-  ),
-  box(textOutput(outputId = "nick_msg_two"))
+  )
 )
 
 graph_two <- fluidRow(
@@ -71,7 +70,9 @@ body <- dashboardBody(
     tabItem(tabName = "Barchart",
             h2("Widgets tab content"),
             graph_one,
-            textOutput(outputId = "nick_msg_one")
+            includeHTML("www/graph_one.html"),
+            plotOutput("all_cat_barchart", height = 400, width = 700),
+            includeHTML("www/graph_one2.html")
     ),
     
     tabItem(tabName = "Piechart",

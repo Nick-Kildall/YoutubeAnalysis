@@ -155,26 +155,14 @@ server <- function(input, output) {
     theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
   })
   
+  output$all_cat_barchart <- renderPlot(get_daily_views_plot(youtube_trending))
+  
   ### Quang
   output$boxplot <- renderPlotly({})
   
   ### Isaac 
   
   ### General 
-  output$nick_msg_one <- renderText(
-    "This plot displays the average amount of views trending videos recieved 
-    on a given day (Sunday to Saturday). We created this chart to see if there
-    is a relationship between average viewership and the day of the week. 
-              
-    As you can tell this is a barplot. To make it easier to read we
-    included the numbers the bars represent directly above their 
-    respective bar. 
-              
-    This graph clearly shows that trending videos on Friday receive nearly triple
-    the average viewership. Additionally, Wednesday is a particularly slow day
-    for YouTube videos. This may mean that popular creators should attempt to
-    have a video on the trending page every Friday because this is when they
-    would likely receive the highest viewership."
-  )
+
   
 }

@@ -156,7 +156,45 @@ server <- function(input, output) {
   })
   
   ### Quang
-  output$boxplot <- renderPlotly({})
+  
+  time_until_trending <- reactive({
+    result <- youtube_trending %>%
+      select(title, categoryId, publishedAt, trending_date) %>%
+      mutate(
+        publishedAt = as.POSIXct(publishedAt,
+                                 format = "%Y-%m-%dT%H:%M:%SZ"
+        ),
+        trending_date = as.POSIXct(trending_date,
+                                   format = "%Y-%m-%dT%H:%M:%SZ"
+        ),
+        days_until_trending = (trending_date - publishedAt) / 86400,
+        # getting rid of negative time values and replacing them with 0
+        days_until_trending = replace(
+          days_until_trending,
+          which(days_until_trending < 0),
+          0
+        ),
+        categoryId = factor(
+          categoryId,
+          levels = c(1, 2, 10, 15, 17, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29),
+          labels = c(
+            "Film & Animation", "Autos & Vehicles", "Music",
+            "Pets & Animals", "Sports", "Travel & Events",
+            "Gaming", "People & Blogs", "Comedy", "Entertainment",
+            "News & Politics", "How to & Style", "Education",
+            "Science & Technology", "Nonprofits & Activism"
+          )
+        )
+      )
+    return(result)
+  })
+  
+  output$boxplot <- renderPlotly({
+    plot_ly(data = time_until_trending(),
+            x = ~categoryId,
+            y = ~days_until_trending,
+            type = "box")
+  })
   
   ### Isaac 
   

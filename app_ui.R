@@ -20,7 +20,7 @@ sidebar <- dashboardSidebar(
     menuItem("Introduction", tabName = "Introduction"),
     menuItem("Graph One", tabName = "Barchart"),
     menuItem("Trending by Categories", tabName = "Piechart"),
-    menuItem("Graph Three", tabName = "Quang's page"),
+    menuItem("Publish Date vs Trending Date", tabName = "Boxplot"),
     menuItem("Summary", tabName = "Summary")
   )
 )
@@ -60,6 +60,12 @@ graph_two <- fluidRow(
   )
 )
 
+graph_three <- fluidRow(
+  box(
+    plotlyOutput("boxplot", height = 650)
+  )
+)
+
 body <- dashboardBody(
   
   ### pages
@@ -80,8 +86,9 @@ body <- dashboardBody(
             includeHTML("www/piechart_msg.html")
     ),
     
-    tabItem(tabName = "Quang's page",
-            h2("blah")
+    tabItem(tabName = "Boxplot",
+            h2("Publish Date vs Trend Date"),
+            graph_three
     ),
     
     tabItem(tabName = "Summary",

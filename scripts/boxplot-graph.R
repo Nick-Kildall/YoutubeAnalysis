@@ -56,8 +56,8 @@ time_until_trending_graph <- function(youtube_trending) {
 
   # plotly
   days_until_trending_plotly <- ggplotly(days_until_trending_plot,
-    height = 650,
-    width = 1100
+                                         height = 650,
+                                         width = 1100
   )
   return(days_until_trending_plotly)
 }

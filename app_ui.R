@@ -41,14 +41,14 @@ graph_one <- fluidRow(
           "Science & Technology" = 28, "Nonprofits & Activism" = 29
       )
     )
-  )
+  ), 
+  box(textOutput("instructions"))
 )
 
 graph_two <- fluidRow(
   box(
     plotlyOutput("piechart", height = 400)
   ),
-  
   box(
     selectInput(
       inputId = "piechart",

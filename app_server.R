@@ -196,7 +196,7 @@ server <- function(input, output) {
             y = ~days_until_trending,
             type = "box"
     ) %>%
-      layout(title = "Comparing Publish Dates and Trending Dates of Videos by Category",
+      layout(title = "Comparing Publish Dates and Trending \nDates of Videos by Category",
              xaxis = list(title = "Category ID", tickangle = -90),
              yaxis = list(title = "Days Until Trending", hoverformat = ".2f"))
   })
@@ -204,6 +204,11 @@ server <- function(input, output) {
   ### Isaac 
   
   ### General 
+  
+  output$instructions <- renderText("This plot displays the average amount of views
+    trending videos recieved on a given day (Sunday to Saturday) for whatever
+    YouTube category the userwould like to specify. Use the widget above to 
+    select the category you would like to see.")
 
   
 }

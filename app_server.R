@@ -192,7 +192,7 @@ server <- function(input, output) {
   
   output$instructions <- renderText("This plot displays the average amount of views
     trending videos recieved on a given day (Sunday to Saturday) for whatever
-    YouTube category the userwould like to specify. Use the widget above to 
+    YouTube category the user would like to specify. Use the widget above to 
     select the category you would like to see.")
 
   

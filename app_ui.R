@@ -38,7 +38,8 @@ graph_one <- fluidRow(
           "Gaming" = 20, "People & Blogs" = 22, "Comedy" = 23, "Entertainment" = 24,
           "News & Politics"=25, "How to & Style" = 26, "Education" = 27,
           "Science & Technology" = 28, "Nonprofits & Activism" = 29
-      )
+      ),
+      selected = "Film & Animation"
     )
   ), 
   box(textOutput("instructions"))
@@ -89,7 +90,7 @@ body <- dashboardBody(
     ### Bar Chart page displaying average views for each category by day of
     ### the week.
     tabItem(tabName = "Barchart",
-            h2("Widgets tab content"),
+            h2("Average Views by Category"),
             graph_one,
             includeHTML("www/graph_one.html"),
             plotOutput("all_cat_barchart", height = 400, width = 700),

@@ -20,7 +20,7 @@ sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Introduction", tabName = "Introduction"),
     menuItem("Average Views by Category", tabName = "Barchart"),
-    menuItem("Trending by Categories", tabName = "Piechart"),
+    menuItem("Trenfding by Categories", tabName = "Piechart"),
     menuItem("Publish Date vs Trending Date", tabName = "Boxplot"),
     menuItem("Summary", tabName = "Summary")
   )

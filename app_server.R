@@ -224,7 +224,7 @@ server <- function(input, output) {
   ## Summary Graphs
   
   ### Render Table
-  output$summary_table <- renderTable({get_table_info(youtube_trending)})
+  output$summary_table <- renderTable({get_table_info(youtube_days)})
   ### Render Barplot
   output$summary_barchart <- renderPlot({get_daily_views_plot(youtube_trending)})
   ### Render Piechart

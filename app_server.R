@@ -4,6 +4,7 @@ library(stringr)
 library(plotly)
 library(RColorBrewer)
 
+### Sourcing Data
 source("scripts/daily_views_graph.R")
 source("scripts/boxplot-graph.R")
 source("scripts/summary_info_script.R")
@@ -55,8 +56,6 @@ youtube_trending$categoryId[youtube_trending$categoryId == "29"] <-
 
 ### Main Server Function
 server <- function(input, output) {
-
-  ### Mitchell
 
   ### Creating a reactive df that filters for data based off the user's input
   ### The options are either viewing the entire df or filtering by month.
@@ -119,8 +118,6 @@ server <- function(input, output) {
       )
   })
 
-  ### Nick
-
   ### Filters data by the user's specified category and finds the average
   ### amount of videos that occured on that day.
   youtube_filtered <- reactive({
@@ -168,9 +165,14 @@ server <- function(input, output) {
   ### Renders a plot that shows average views per day with out
   ### regard for category.
   output$all_cat_barchart <- renderPlot(get_daily_views_plot(youtube_trending))
-
-  ### Quang
-
+  
+  ### Intructions for barplot
+  output$instructions <- renderText("This plot displays the average amount
+    of views trending videos recieved on a given day (Sunday to Saturday) for
+    whatever YouTube category the user would like to specify. Use the widget
+    above to select the category you would like to see.")
+  
+  ###
   time_until_trending <- reactive({
     df <- youtube_trending %>%
       select(title, categoryId, publishedAt, trending_date) %>%
@@ -201,7 +203,8 @@ server <- function(input, output) {
 
     return(result)
   })
-
+  
+  ###
   output$boxplot <- renderPlotly({
     plot_ly(
       data = time_until_trending(),
@@ -216,13 +219,5 @@ server <- function(input, output) {
         yaxis = list(title = "Days Until Trending", hoverformat = ".2f")
       )
   })
-
-  ### Isaac
-
-  ### General
-
-  output$instructions <- renderText("This plot displays the average amount
-    of views trending videos recieved on a given day (Sunday to Saturday) for
-    whatever YouTube category the user would like to specify. Use the widget
-    above to select the category you would like to see.")
+  
 }

@@ -23,10 +23,11 @@ sidebar <- dashboardSidebar(width = 275,
     menuItem("Summary", tabName = "Summary")
   )
 )
+
 ### Bar Chart
 graph_one <- fluidRow(
   box(
-    plotOutput("barchart", height = 400)
+    plotlyOutput("barchart", height = 400)
   ),
   box(
     title = "Category",

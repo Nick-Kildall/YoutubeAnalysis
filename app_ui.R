@@ -23,10 +23,11 @@ sidebar <- dashboardSidebar(width = 275,
     menuItem("Summary", tabName = "Summary")
   )
 )
+
 ### Bar Chart
 graph_one <- fluidRow(
   box(
-    plotOutput("barchart", height = 400)
+    plotlyOutput("barchart", height = 400)
   ),
   box(
     title = "Category",
@@ -90,7 +91,7 @@ body <- dashboardBody(
     ### Bar Chart page displaying average views for each category by day of
     ### the week.
     tabItem(tabName = "Barchart",
-            h2("Average Views by Category"),
+            includeHTML("www/barchart_header.html"),
             graph_one,
             includeHTML("www/graph_one.html"),
             plotOutput("all_cat_barchart", height = 400, width = 700),
@@ -110,7 +111,7 @@ body <- dashboardBody(
     ),
 
     tabItem(tabName = "Summary",
-            h2("Blah")
+          includeHTML("www/Summary.html")
     )
   )
 )

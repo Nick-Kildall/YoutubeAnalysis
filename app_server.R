@@ -112,7 +112,7 @@ server <- function(input, output) {
   })
 
   ### Nick
-
+  
   ### Filters data by the user's specified category and finds the average
   ### amount of videos that occured on that day.
   youtube_filtered <- reactive({
@@ -136,19 +136,33 @@ server <- function(input, output) {
   })
 
   ### Creates a barpot that changes based on the users prefered category
-  output$barchart <- renderPlot({
-    ggplot(
-      data = youtube_filtered(),
-      aes(x = day, y = sum_view, fill = day, width = .75)
-    ) +
-    geom_bar(position = "dodge", stat = "identity", colour = "black") +
-    geom_text(aes(label = prettyNum(sum_view, big.mark = ",")),
-              position = position_dodge(width = 0.9), vjust = -.5
-    ) +
-    scale_colour_manual(values = names(brewer.pal(6, "Set1"))) +
-    labs(x = "Day", y = "Average Views") +
-    ggtitle("Average Amount of Views by Day of the Week") +
-    theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
+  output$barchart <- renderPlotly({
+    #ggplot(
+    #  data = youtube_filtered(),
+    #  aes(x = day, y = sum_view, fill = day, width = .75)
+   # ) +
+   # geom_bar(position = "dodge", stat = "identity") +
+    #scale_colour_manual(values = names(brewer.pal(6, "Set1"))) +
+    #labs(x = "Day", y = "Average Views") +
+   # ggtitle("Average Amount of Views by Day of the Week") +
+   # theme(legend.position = "none", plot.title = element_text(hjust = 0.5))
+    
+    #plot <- ggplotly(plot, tooltip = c("x","y"))
+    
+    plot <- plot_ly(youtube_filtered(), x = ~day, y = ~sum_view, type = 'bar',
+              line = list(color = 'rgb(8,48,107)', width = 1.5),
+              hoverinfo = "text",
+              text = ~paste0("Day: ",
+                             day,
+                             "\nAverage Views: ",
+                             sum_view),
+              marker = list(line = list(color = "black", width = 1))) %>%
+              layout(title = "Average Amount of Views by Day of the Week",
+                          xaxis = list(title = "Day"),
+                          yaxis = list(title = "Average Views"))
+
+    
+    return(plot)
   })
 
   ### Calls function in the script file.

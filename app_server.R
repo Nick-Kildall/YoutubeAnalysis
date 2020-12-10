@@ -166,13 +166,13 @@ server <- function(input, output) {
   ### Renders a plot that shows average views per day with out
   ### regard for category.
   output$all_cat_barchart <- renderPlot(get_daily_views_plot(youtube_trending))
-  
+
   ### Intructions for barplot
   output$instructions <- renderText("This plot displays the average amount
     of views trending videos recieved on a given day (Sunday to Saturday) for
     whatever YouTube category the user would like to specify. Use the widget
     above to select the category you would like to see.")
-  
+
   ### Create dataframe that shows the difference between a video's publish
   ### and trending date
   time_until_trending <- reactive({
@@ -205,7 +205,7 @@ server <- function(input, output) {
 
     return(result)
   })
-  
+
   ### Create boxplot that shows data from the month a user chooses
   output$boxplot <- renderPlotly({
     plot_ly(
@@ -215,21 +215,36 @@ server <- function(input, output) {
       type = "box"
     ) %>%
       layout(
-        title = paste0("Comparing Publish Dates and Trending",
-          "\nDates of Videos by Category"),
+        title = paste0(
+          "Comparing Publish Dates and Trending",
+          "\nDates of Videos by Category"
+        ),
         xaxis = list(title = "Category ID", tickangle = -90),
         yaxis = list(title = "Days Until Trending", hoverformat = ".2f")
       )
   })
-  
+
   ## Summary Graphs
-  
+
   ### Render Table
-  output$summary_table <- renderTable({get_table_info(youtube_days)})
+  output$summary_table <- renderTable({
+    get_table_info(youtube_days) %>%
+      rename(
+        CATEGORY = category_names, "AVERAGE VIEWS" = views_mean,
+        "AVERAGE LIKES" = averagelikes, "TOP CHANNEL" = topchannel,
+        "AVERAGE COMMENTS" = commentsmean, "TITLE STATISTICS" = titlestat
+      )
+  })
   ### Render Barplot
-  output$summary_barchart <- renderPlot({get_daily_views_plot(youtube_trending)})
+  output$summary_barchart <- renderPlot({
+    get_daily_views_plot(youtube_trending)
+  })
   ### Render Piechart
-  output$summary_piechart <- renderPlotly({trending_categories_graph(youtube_trending)})
+  output$summary_piechart <- renderPlotly({
+    trending_categories_graph(youtube_trending)
+  })
   ### Render Boxplot
-  output$summary_boxplot <- renderPlotly({time_until_trending_graph(youtube_days)})
+  output$summary_boxplot <- renderPlotly({
+    time_until_trending_graph(youtube_days)
+  })
 }

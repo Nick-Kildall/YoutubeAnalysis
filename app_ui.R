@@ -127,7 +127,6 @@ body <- dashboardBody(
       plotlyOutput("summary_piechart"),
       includeHTML("www/summaryboxplot.html"),
       plotlyOutput("summary_boxplot"),
-      
     )
   )
 )

@@ -8,6 +8,7 @@ library(RColorBrewer)
 source("scripts/daily_views_graph.R")
 source("scripts/boxplot-graph.R")
 source("scripts/summary_info_script.R")
+source("scripts/piechart-graph.R")
 source("scripts/Grouped_by.R")
 
 ### Reading in our dataset.
@@ -220,4 +221,12 @@ server <- function(input, output) {
       )
   })
   
+  ## Summary Graphs
+  
+  ### Render Table
+  output$summary_table <- renderTable({get_table_info(youtube_trending)})
+  ### Render Barplot
+  output$summary_barchart <- renderPlot({get_daily_views_plot(youtube_trending)})
+  ### Render Piechart
+  output$summary_piechart <- renderPlotly({trending_categories_graph(youtube_trending)})
 }

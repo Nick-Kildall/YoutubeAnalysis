@@ -119,7 +119,11 @@ body <- dashboardBody(
 
     tabItem(
       tabName = "Summary",
-      includeHTML("www/Summary.html")
+      includeHTML("www/Summary.html"),
+      plotOutput("summary_barchart"),
+      plotlyOutput("summary_piechart"),
+      plotlyOutput("summary_boxplot"),
+      tableOutput("summary_table")
     )
   )
 )

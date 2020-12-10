@@ -173,7 +173,8 @@ server <- function(input, output) {
     whatever YouTube category the user would like to specify. Use the widget
     above to select the category you would like to see.")
   
-  ###
+  ### Create dataframe that shows the difference between a video's publish
+  ### and trending date
   time_until_trending <- reactive({
     df <- youtube_trending %>%
       select(title, categoryId, publishedAt, trending_date) %>%
@@ -205,7 +206,7 @@ server <- function(input, output) {
     return(result)
   })
   
-  ###
+  ### Create boxplot that shows data from the month a user chooses
   output$boxplot <- renderPlotly({
     plot_ly(
       data = time_until_trending(),
@@ -229,4 +230,6 @@ server <- function(input, output) {
   output$summary_barchart <- renderPlot({get_daily_views_plot(youtube_trending)})
   ### Render Piechart
   output$summary_piechart <- renderPlotly({trending_categories_graph(youtube_trending)})
+  ### Render Boxplot
+  output$summary_piechart <- renderPlotly({time_until_trending_graph(youtube_days)})
 }

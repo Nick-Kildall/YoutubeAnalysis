@@ -1,4 +1,4 @@
-### Final Deliverable: Shiny Main 
+### Final Deliverable: Shiny Main
 library("shiny")
 
 ### Sourcing UI and Server

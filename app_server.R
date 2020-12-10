@@ -229,7 +229,7 @@ server <- function(input, output) {
   ### Render Barplot
   output$summary_barchart <- renderPlot({get_daily_views_plot(youtube_trending)})
   ### Render Piechart
-  output$summary_piechart <- renderPlotly({trending_categories_graph(youtube_trending)})
+  output$summary_piechart <- renderPlotly({trending_categories_graph(youtube_days)})
   ### Render Boxplot
   output$summary_boxplot <- renderPlotly({time_until_trending_graph(youtube_days)})
 }

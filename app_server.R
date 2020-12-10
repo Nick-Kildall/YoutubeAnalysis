@@ -231,5 +231,5 @@ server <- function(input, output) {
   ### Render Piechart
   output$summary_piechart <- renderPlotly({trending_categories_graph(youtube_trending)})
   ### Render Boxplot
-  output$summary_piechart <- renderPlotly({time_until_trending_graph(youtube_days)})
+  output$summary_boxplot <- renderPlotly({time_until_trending_graph(youtube_days)})
 }

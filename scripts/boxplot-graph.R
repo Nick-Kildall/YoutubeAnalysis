@@ -46,7 +46,7 @@ time_until_trending_graph <- function(youtube_trending) {
     )
   ) +
     ggtitle(
-      "Comparing Publish Dates and Trending Dates of Videos by Category") +
+      "Publish Dates and Trending Dates of Videos by Category") +
     theme(plot.title = element_text(hjust = .5)) +
     geom_boxplot(outlier.shape = 8) +
     stat_summary(fun.y = mean, geom = "point") +
@@ -55,9 +55,6 @@ time_until_trending_graph <- function(youtube_trending) {
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 
   # plotly
-  days_until_trending_plotly <- ggplotly(days_until_trending_plot,
-                                         height = 650,
-                                         width = 1100
-  )
+  days_until_trending_plotly <- ggplotly(days_until_trending_plot)
   return(days_until_trending_plotly)
 }
